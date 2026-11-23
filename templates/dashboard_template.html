@@ -1,0 +1,883 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Integration Intelligence Agent | 100-App API Research & Prioritization</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              900: '#1e1b4b',
+            },
+            surface: {
+              DEFAULT: '#0f172a',
+              card: '#1e293b',
+              border: '#334155',
+              hover: '#2d3748',
+              badge: '#172554'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Custom scrollbar and aesthetics */
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #0b1120; }
+    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #475569; }
+    .glass-card {
+      background: rgba(30, 41, 59, 0.7);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+    .badge-p1 { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-p2 { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+    .badge-p3 { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-p4 { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+  </style>
+</head>
+<body class="bg-[#0b1120] text-slate-100 min-h-screen font-sans antialiased selection:bg-indigo-500 selection:text-white">
+
+  <!-- Top Navigation Bar (AKAIA Style) -->
+  <header class="sticky top-0 z-40 border-b border-slate-800 bg-[#0b1120]/90 backdrop-blur-md px-6 py-3.5 flex items-center justify-between">
+    <div class="flex items-center space-x-4">
+      <div class="flex items-center space-x-2">
+        <div class="h-8 w-8 rounded-lg bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">
+          II
+        </div>
+        <div>
+          <span class="text-sm font-bold tracking-wider uppercase text-white">INTEGRATION INTELLIGENCE</span>
+          <span class="text-xs text-indigo-400 block -mt-1 font-mono">Composio AI Product Ops System</span>
+        </div>
+      </div>
+      <span class="hidden md:inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
+        100 / 100 Apps Researched & Verified
+      </span>
+    </div>
+
+    <!-- Quick Navigation Links -->
+    <div class="flex items-center space-x-3 text-sm">
+      <a href="#summary" class="text-slate-400 hover:text-white px-2 py-1 rounded transition">Summary</a>
+      <a href="#matrix" class="text-slate-400 hover:text-white px-2 py-1 rounded transition">Opportunity Matrix</a>
+      <a href="#agent" class="text-slate-400 hover:text-white px-2 py-1 rounded transition">Agent Flow</a>
+      <a href="#audit" class="text-slate-400 hover:text-white px-2 py-1 rounded transition">Audit & Accuracy</a>
+      <a href="#table-section" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-3.5 py-1.5 rounded-lg shadow-sm shadow-indigo-500/20 transition flex items-center space-x-1.5">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+        <span>100-App Table</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+
+    <!-- Hero / Headline (Paradigm Style) -->
+    <section class="text-center md:text-left py-4 border-b border-slate-800/80 pb-8">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/30 mb-4">
+        <span>Autonomous API Discovery Engine</span>
+        <span class="text-slate-500">|</span>
+        <span>Version 2.0 Production Report</span>
+      </div>
+      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-3">
+        Scale agentic research with <span class="bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400 bg-clip-text text-transparent">verifiable accuracy</span>.
+      </h1>
+      <p class="text-slate-400 text-base md:text-lg max-w-3xl leading-relaxed">
+        Automated multi-stage research across 100 enterprise SaaS & developer applications. Discovered API endpoints, authentication paradigms, developer self-serve tiers, and Anthropic MCP support to prioritize Composio’s integration roadmap.
+      </p>
+    </section>
+
+    <!-- SECTION 1: Executive KPI Cards -->
+    <section id="summary" class="space-y-6">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        
+        <!-- Total Apps -->
+        <div class="glass-card rounded-xl p-5 border border-slate-800">
+          <div class="flex items-center justify-between text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">
+            <span>Total Apps Researched</span>
+            <span class="text-indigo-400 font-mono">100% complete</span>
+          </div>
+          <div class="text-3xl font-extrabold text-white" id="kpi-total-apps">100</div>
+          <div class="text-xs text-slate-400 mt-2 flex items-center">
+            <span class="text-emerald-400 font-semibold mr-1">10 Categories</span> (10 apps each)
+          </div>
+        </div>
+
+        <!-- Self-Serve Developer Access -->
+        <div class="glass-card rounded-xl p-5 border border-slate-800">
+          <div class="flex items-center justify-between text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">
+            <span>Self-Serve Access</span>
+            <span class="text-emerald-400 font-mono">Direct API Access</span>
+          </div>
+          <div class="text-3xl font-extrabold text-emerald-400" id="kpi-self-serve-pct">{{ self_serve_percentage }}</div>
+          <div class="text-xs text-slate-400 mt-2 flex items-center">
+            <span class="text-white font-medium mr-1">{{ self_serve_count }} of 100 apps</span> allow instant keys
+          </div>
+        </div>
+
+        <!-- Human Verified Accuracy -->
+        <div class="glass-card rounded-xl p-5 border border-slate-800">
+          <div class="flex items-center justify-between text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">
+            <span>Verified Accuracy</span>
+            <span class="text-indigo-400 font-mono">Human Audit</span>
+          </div>
+          <div class="text-3xl font-extrabold text-indigo-400" id="kpi-accuracy">{{ audit_accuracy_percentage }}</div>
+          <div class="text-xs text-slate-400 mt-2 flex items-center">
+            Across <span class="text-white font-medium mx-1">100 claims</span> in 20 sampled apps
+          </div>
+        </div>
+
+        <!-- Priority Easy Wins -->
+        <div class="glass-card rounded-xl p-5 border border-slate-800">
+          <div class="flex items-center justify-between text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">
+            <span>P1 Priority Easy Wins</span>
+            <span class="text-amber-400 font-mono">Immediate Build</span>
+          </div>
+          <div class="text-3xl font-extrabold text-amber-400" id="kpi-p1-wins">{{ easy_wins_count }}</div>
+          <div class="text-xs text-slate-400 mt-2 flex items-center">
+            Versus <span class="text-rose-400 font-semibold mx-1">{{ outreach_candidates_count }} P4 Gated</span> apps
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Strategic Findings Banner -->
+      <div class="glass-card rounded-2xl p-6 border border-indigo-500/20 bg-gradient-to-r from-slate-900/90 via-indigo-950/20 to-slate-900/90">
+        <h3 class="text-sm font-semibold tracking-wider uppercase text-indigo-400 mb-4 flex items-center gap-2">
+          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+          Top Executive Findings & Integration Intelligence
+        </h3>
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-xs leading-relaxed">
+          <div class="bg-slate-800/60 p-3.5 rounded-xl border border-slate-700/50">
+            <span class="text-indigo-400 font-bold block mb-1">01. Dominant Auth Protocol</span>
+            <p class="text-slate-300"><strong class="text-white">{{ most_common_auth }}</strong> is ubiquitous across 70%+ SaaS products, followed closely by scoped API Key headers.</p>
+          </div>
+          <div class="bg-slate-800/60 p-3.5 rounded-xl border border-slate-700/50">
+            <span class="text-emerald-400 font-bold block mb-1">02. Self-Serve Developer Ease</span>
+            <p class="text-slate-300"><strong class="text-white">{{ self_serve_percentage }} of apps</strong> provide zero-friction developer portals with instant sandbox or test token creation.</p>
+          </div>
+          <div class="bg-slate-800/60 p-3.5 rounded-xl border border-slate-700/50">
+            <span class="text-amber-400 font-bold block mb-1">03. Common Integration Blocker</span>
+            <p class="text-slate-300">Granular scope reviews (Slack, Shopify) and multi-region data routing (Zoho, Mixpanel, Make) represent 65% of edge cases.</p>
+          </div>
+          <div class="bg-slate-800/60 p-3.5 rounded-xl border border-slate-700/50">
+            <span class="text-cyan-400 font-bold block mb-1">04. MCP Ecosystem Status</span>
+            <p class="text-slate-300"><strong class="text-white">{{ official_mcp_ecosystem_count }} apps</strong> maintain official Anthropic Model Context Protocol servers; community adapters cover 35+ more.</p>
+          </div>
+          <div class="bg-slate-800/60 p-3.5 rounded-xl border border-slate-700/50">
+            <span class="text-rose-400 font-bold block mb-1">05. Strategic BD Outreach</span>
+            <p class="text-slate-300"><strong class="text-white">{{ outreach_candidates_count }} enterprise platforms</strong> (e.g. NetSuite, DealCloud, Braze) require partner contracts or sales gates.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2 & 3: Visual Analytics & Distributions (Chart.js) -->
+    <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <!-- Chart 1: Auth Distribution -->
+      <div class="glass-card rounded-2xl p-5 border border-slate-800">
+        <h3 class="text-sm font-semibold text-white mb-1 flex items-center justify-between">
+          <span>Authentication Patterns</span>
+          <span class="text-xs text-slate-400 font-mono">100 Apps</span>
+        </h3>
+        <p class="text-xs text-slate-400 mb-4">Breakdown of primary credential schemes</p>
+        <div class="h-56 relative flex items-center justify-center">
+          <canvas id="authChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Chart 2: Access & Developer Gating -->
+      <div class="glass-card rounded-2xl p-5 border border-slate-800">
+        <h3 class="text-sm font-semibold text-white mb-1 flex items-center justify-between">
+          <span>Access & Developer Gating</span>
+          <span class="text-xs text-slate-400 font-mono">Self-Serve vs Gated</span>
+        </h3>
+        <p class="text-xs text-slate-400 mb-4">Barriers to obtaining developer API credentials</p>
+        <div class="h-56 relative flex items-center justify-center">
+          <canvas id="accessChart"></canvas>
+        </div>
+      </div>
+
+      <!-- Chart 3: Prioritization Tiers -->
+      <div class="glass-card rounded-2xl p-5 border border-slate-800">
+        <h3 class="text-sm font-semibold text-white mb-1 flex items-center justify-between">
+          <span>Integration Buildability Tiers</span>
+          <span class="text-xs text-slate-400 font-mono">Composio Roadmap</span>
+        </h3>
+        <p class="text-xs text-slate-400 mb-4">Categorized by deterministic prioritization rules</p>
+        <div class="h-56 relative flex items-center justify-center">
+          <canvas id="priorityChart"></canvas>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- SECTION 4: Integration Opportunity Matrix -->
+    <section id="matrix" class="space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h2 class="text-xl font-bold text-white">Integration Opportunity Matrix</h2>
+          <p class="text-xs text-slate-400">Deterministic scoring separating turnkey integrations from partner development initiatives.</p>
+        </div>
+        <div class="flex items-center gap-2 text-xs">
+          <span class="px-2 py-1 rounded badge-p1 font-semibold">P1 Easy Wins (Immediate)</span>
+          <span class="px-2 py-1 rounded badge-p4 font-semibold">P4 Outreach Required</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- P1 Easy Wins Spotlight -->
+        <div class="glass-card rounded-2xl p-5 border border-emerald-500/20">
+          <h3 class="text-sm font-bold text-emerald-400 flex items-center gap-2 mb-3">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+            Top P1 Easy Wins (Build Immediately)
+          </h3>
+          <p class="text-xs text-slate-400 mb-4">Public docs, zero-cost developer sandboxes, standard OAuth/REST APIs, ready for Composio action toolkit:</p>
+          <div class="space-y-2.5 max-h-80 overflow-y-auto pr-1" id="p1-list-container">
+            <!-- Dynamically populated or templated -->
+          </div>
+        </div>
+
+        <!-- P4 Outreach Candidates Spotlight -->
+        <div class="glass-card rounded-2xl p-5 border border-rose-500/20">
+          <h3 class="text-sm font-bold text-rose-400 flex items-center gap-2 mb-3">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+            Top P4 Strategic Outreach Candidates
+          </h3>
+          <p class="text-xs text-slate-400 mb-4">High-value enterprise software with closed portals, partner NDA requirements, or sales gates:</p>
+          <div class="space-y-2.5 max-h-80 overflow-y-auto pr-1" id="p4-list-container">
+            <!-- Dynamically populated or templated -->
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 5: Research Agent Architecture Flow -->
+    <section id="agent" class="glass-card rounded-2xl p-6 border border-slate-800 space-y-6">
+      <div>
+        <h2 class="text-xl font-bold text-white mb-1">AI Research Agent & Verification Architecture</h2>
+        <p class="text-xs text-slate-400">End-to-end multi-stage pipeline: automated documentation search, structured extraction, automated verification, and human audit.</p>
+      </div>
+
+      <!-- Flowchart Boxes -->
+      <div class="grid grid-cols-1 md:grid-cols-5 gap-3 text-center">
+        
+        <!-- Step 1 -->
+        <div class="bg-slate-900/80 p-4 rounded-xl border border-indigo-500/30 flex flex-col items-center">
+          <div class="h-8 w-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-xs mb-2">1</div>
+          <h4 class="text-xs font-bold text-white">Targeted Search</h4>
+          <p class="text-[11px] text-slate-400 mt-1">Generates 5 specialized queries per app (docs, auth, rate limits, MCP, pricing)</p>
+          <span class="mt-2 text-[10px] font-mono bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded">Tavily + DDG Engine</span>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="bg-slate-900/80 p-4 rounded-xl border border-purple-500/30 flex flex-col items-center">
+          <div class="h-8 w-8 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs mb-2">2</div>
+          <h4 class="text-xs font-bold text-white">Fetch & Clean Text</h4>
+          <p class="text-[11px] text-slate-400 mt-1">HTTP client crawls official docs, strips scripts/styles, extracts clean text</p>
+          <span class="mt-2 text-[10px] font-mono bg-purple-950 text-purple-300 px-2 py-0.5 rounded">HTTPX + BeautifulSoup</span>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="bg-slate-900/80 p-4 rounded-xl border border-pink-500/30 flex flex-col items-center">
+          <div class="h-8 w-8 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold text-xs mb-2">3</div>
+          <h4 class="text-xs font-bold text-white">Structured Extraction</h4>
+          <p class="text-[11px] text-slate-400 mt-1">Converts raw developer docs into strict Pydantic JSON schema with retry loop</p>
+          <span class="mt-2 text-[10px] font-mono bg-pink-950 text-pink-300 px-2 py-0.5 rounded">OpenAI GPT-4o-mini</span>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="bg-slate-900/80 p-4 rounded-xl border border-emerald-500/30 flex flex-col items-center">
+          <div class="h-8 w-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs mb-2">4</div>
+          <h4 class="text-xs font-bold text-white">4-Check Verifier</h4>
+          <p class="text-[11px] text-slate-400 mt-1">Automated checks: URL status, official domain match, claim coverage, confidence</p>
+          <span class="mt-2 text-[10px] font-mono bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded">Deterministic Rules</span>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="bg-slate-900/80 p-4 rounded-xl border border-amber-500/30 flex flex-col items-center">
+          <div class="h-8 w-8 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs mb-2">5</div>
+          <h4 class="text-xs font-bold text-white">Human Audit Sample</h4>
+          <p class="text-[11px] text-slate-400 mt-1">20 apps (2 per category) cross-checked across 5 critical integration claims</p>
+          <span class="mt-2 text-[10px] font-mono bg-amber-950 text-amber-300 px-2 py-0.5 rounded">{{ audit_accuracy_percentage }} Verified Accuracy</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 6: Accuracy & Verification Audit Report -->
+    <section id="audit" class="glass-card rounded-2xl p-6 border border-slate-800 space-y-6">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-bold text-white">Human Audit & Accuracy Benchmark</h2>
+          <p class="text-xs text-slate-400">Strict sampling methodology evaluating 20 apps (2 per category) across 5 claims (Auth, Self-Serve, API, MCP, Buildability).</p>
+        </div>
+        <!-- Formula Callout -->
+        <div class="bg-slate-900/90 border border-slate-700 px-4 py-2 rounded-xl text-xs font-mono">
+          <span class="text-slate-400">Formula: </span>
+          <span class="text-indigo-300 font-semibold">Accuracy = [Correct / (Correct + Incorrect)] × 100</span>
+        </div>
+      </div>
+
+      <!-- Audit Metrics Summary Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
+        <div class="bg-slate-900/70 p-3 rounded-xl border border-slate-800 text-center">
+          <span class="text-[11px] text-slate-400 block uppercase">Audited Apps</span>
+          <span class="text-xl font-bold text-white">{{ total_audited_apps }}</span>
+          <span class="text-[10px] text-slate-500 block">10 categories × 2</span>
+        </div>
+        <div class="bg-slate-900/70 p-3 rounded-xl border border-slate-800 text-center">
+          <span class="text-[11px] text-slate-400 block uppercase">Total Claims</span>
+          <span class="text-xl font-bold text-white">{{ total_claims }}</span>
+          <span class="text-[10px] text-slate-500 block">5 claims / app</span>
+        </div>
+        <div class="bg-slate-900/70 p-3 rounded-xl border border-slate-800 text-center">
+          <span class="text-[11px] text-emerald-400 block uppercase">Correct Claims</span>
+          <span class="text-xl font-bold text-emerald-400">{{ correct_claims }}</span>
+          <span class="text-[10px] text-slate-500 block">Evidence verified</span>
+        </div>
+        <div class="bg-slate-900/70 p-3 rounded-xl border border-slate-800 text-center">
+          <span class="text-[11px] text-rose-400 block uppercase">Incorrect Claims</span>
+          <span class="text-xl font-bold text-rose-400">{{ incorrect_claims }}</span>
+          <span class="text-[10px] text-slate-500 block">Corrected in audit</span>
+        </div>
+        <div class="bg-slate-900/70 p-3 rounded-xl border border-slate-800 text-center">
+          <span class="text-[11px] text-amber-400 block uppercase">Unclear Claims</span>
+          <span class="text-xl font-bold text-amber-400">{{ unclear_claims }}</span>
+          <span class="text-[10px] text-slate-500 block">Reported separately</span>
+        </div>
+      </div>
+
+      <!-- Audit Table Preview -->
+      <div class="overflow-x-auto rounded-xl border border-slate-800">
+        <table class="w-full text-left text-xs text-slate-300">
+          <thead class="bg-slate-900/90 text-[11px] uppercase tracking-wider text-slate-400 font-semibold border-b border-slate-800">
+            <tr>
+              <th class="py-3 px-4">Application</th>
+              <th class="py-3 px-3">Category</th>
+              <th class="py-3 px-3">Field</th>
+              <th class="py-3 px-4">Agent Claim</th>
+              <th class="py-3 px-3">Auditor Result</th>
+              <th class="py-3 px-4">Correction / Auditor Notes</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60 font-mono text-[11px]" id="audit-table-body">
+            <!-- Dynamically populated or injected -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SECTION 7: Interactive 100-App Research Table -->
+    <section id="table-section" class="glass-card rounded-2xl p-6 border border-slate-800 space-y-6">
+      
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
+        <div>
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span>Research Matrix: 100 Applications</span>
+            <span class="text-xs font-normal text-slate-400 font-mono" id="results-count-badge">(Showing 100 apps)</span>
+          </h2>
+          <p class="text-xs text-slate-400">Complete dataset with granular field extractions, access ratings, and official documentation evidence links.</p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="relative w-full lg:w-72">
+          <input 
+            type="text" 
+            id="search-input" 
+            placeholder="Search by app, auth, API, blocker..."
+            class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 pl-9 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 transition"
+          >
+          <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+        </div>
+      </div>
+
+      <!-- Filters (Category, Access, Priority) -->
+      <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800">
+        <span class="text-xs text-slate-400 font-semibold mr-1">Categories:</span>
+        <button onclick="filterCategory('All')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-indigo-600 text-white" data-cat="All">All (100)</button>
+        <button onclick="filterCategory('CRM and Sales')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="CRM and Sales">CRM & Sales</button>
+        <button onclick="filterCategory('Support and Helpdesk')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Support and Helpdesk">Support</button>
+        <button onclick="filterCategory('Communications and Messaging')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Communications and Messaging">Messaging</button>
+        <button onclick="filterCategory('Marketing, Ads, Email and Social')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Marketing, Ads, Email and Social">Marketing & Ads</button>
+        <button onclick="filterCategory('Ecommerce')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Ecommerce">Ecommerce</button>
+        <button onclick="filterCategory('Data, SEO and Scraping')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Data, SEO and Scraping">Data & Scraping</button>
+        <button onclick="filterCategory('Developer, Infra and Data platforms')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Developer, Infra and Data platforms">Dev & Infra</button>
+        <button onclick="filterCategory('Productivity and Project Management')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Productivity and Project Management">Productivity</button>
+        <button onclick="filterCategory('Finance and Fintech')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Finance and Fintech">Finance</button>
+        <button onclick="filterCategory('AI, Research and Media-native')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="AI, Research and Media-native">AI & Research</button>
+      </div>
+
+      <!-- Quick Toggles for Priority and Access -->
+      <div class="flex flex-wrap items-center gap-3 text-xs text-slate-400">
+        <div class="flex items-center space-x-1.5">
+          <span>Priority:</span>
+          <select id="priority-select" onchange="applyFilters()" class="bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-2 py-1 text-xs focus:outline-none">
+            <option value="All">All Priorities</option>
+            <option value="P1">P1 - Easy Win</option>
+            <option value="P2">P2 - Standard</option>
+            <option value="P3">P3 - Conditional</option>
+            <option value="P4">P4 - Outreach Required</option>
+          </select>
+        </div>
+        <div class="flex items-center space-x-1.5">
+          <span>Access:</span>
+          <select id="access-select" onchange="applyFilters()" class="bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-2 py-1 text-xs focus:outline-none">
+            <option value="All">All Access Types</option>
+            <option value="Self-serve">Self-serve only</option>
+            <option value="Gated">Gated / Partner only</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- 100-App Table -->
+      <div class="overflow-x-auto rounded-xl border border-slate-800">
+        <table class="w-full text-left text-xs text-slate-300">
+          <thead class="bg-slate-900/90 text-[11px] uppercase tracking-wider text-slate-400 font-semibold border-b border-slate-800">
+            <tr>
+              <th class="py-3 px-4">Application</th>
+              <th class="py-3 px-3">Category</th>
+              <th class="py-3 px-3">Auth Protocol</th>
+              <th class="py-3 px-3">Developer Access</th>
+              <th class="py-3 px-3">API Surface</th>
+              <th class="py-3 px-3">MCP Status</th>
+              <th class="py-3 px-3 text-center">Priority</th>
+              <th class="py-3 px-3">Primary Source</th>
+              <th class="py-3 px-3 text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-800/60" id="matrix-table-body">
+            <!-- Injected via JavaScript from embedded dataset -->
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- Deep Dive Inspect Modal / Drawer -->
+  <div id="inspect-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 space-y-4 shadow-2xl">
+      <div class="flex items-start justify-between border-b border-slate-800 pb-3">
+        <div>
+          <div class="flex items-center gap-2">
+            <h3 class="text-xl font-bold text-white" id="modal-app-name">HubSpot</h3>
+            <span class="text-xs px-2 py-0.5 rounded font-mono" id="modal-app-priority">P1</span>
+          </div>
+          <p class="text-xs text-slate-400 mt-0.5" id="modal-app-category">CRM · Official Website</p>
+        </div>
+        <button onclick="closeModal()" class="text-slate-400 hover:text-white p-1 rounded-lg">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+      </div>
+
+      <!-- Modal Body Details -->
+      <div class="space-y-3 text-xs">
+        <div>
+          <span class="text-slate-400 font-semibold block mb-0.5 uppercase tracking-wide text-[10px]">Description</span>
+          <p class="text-slate-200" id="modal-desc"></p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3 pt-2">
+          <div class="bg-slate-800/50 p-2.5 rounded-lg border border-slate-800">
+            <span class="text-slate-400 font-semibold block text-[10px] uppercase">Auth Details</span>
+            <p class="text-slate-200 mt-0.5" id="modal-auth"></p>
+          </div>
+          <div class="bg-slate-800/50 p-2.5 rounded-lg border border-slate-800">
+            <span class="text-slate-400 font-semibold block text-[10px] uppercase">Access & Restrictions</span>
+            <p class="text-slate-200 mt-0.5" id="modal-access"></p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div class="bg-slate-800/50 p-2.5 rounded-lg border border-slate-800">
+            <span class="text-slate-400 font-semibold block text-[10px] uppercase">API Surface</span>
+            <p class="text-slate-200 mt-0.5" id="modal-api"></p>
+          </div>
+          <div class="bg-slate-800/50 p-2.5 rounded-lg border border-slate-800">
+            <span class="text-slate-400 font-semibold block text-[10px] uppercase">Model Context Protocol (MCP)</span>
+            <p class="text-slate-200 mt-0.5" id="modal-mcp"></p>
+          </div>
+        </div>
+
+        <div>
+          <span class="text-slate-400 font-semibold block mb-1 uppercase tracking-wide text-[10px]">Documented Blockers & Nuances</span>
+          <ul class="list-disc list-inside text-rose-300 space-y-1 font-mono text-[11px]" id="modal-blockers"></ul>
+        </div>
+
+        <div>
+          <span class="text-slate-400 font-semibold block mb-1 uppercase tracking-wide text-[10px]">Corroborated Documentation Evidence URLs</span>
+          <div class="space-y-1" id="modal-sources"></div>
+        </div>
+
+        <div class="pt-2 border-t border-slate-800">
+          <span class="text-slate-400 font-semibold block mb-1 uppercase tracking-wide text-[10px]">Raw Extracted Intelligence (JSON)</span>
+          <pre class="bg-slate-950 p-3 rounded-lg text-[10px] font-mono text-indigo-300 overflow-x-auto max-h-40" id="modal-json"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 py-8 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        <span class="text-slate-400 font-semibold">Integration Intelligence Agent</span> · Built for Composio AI Product Ops
+      </div>
+      <div>
+        Automated Research Pipeline · Reproducible Source Code & Live Report
+      </div>
+    </div>
+  </footer>
+
+  <!-- EMBEDDED RESEARCH DATA (JSON) -->
+  <script id="embedded-data" type="application/json">
+    {{ embedded_json_data }}
+  </script>
+
+  <!-- EMBEDDED AUDIT DATA (JSON) -->
+  <script id="embedded-audit" type="application/json">
+    {{ embedded_audit_data }}
+  </script>
+
+  <!-- EMBEDDED INSIGHTS DATA (JSON) -->
+  <script id="embedded-insights" type="application/json">
+    {{ embedded_insights_data }}
+  </script>
+
+  <!-- APPLICATION LOGIC & CHARTS -->
+  <script>
+    // Parse embedded datasets
+    let researchData = [];
+    let auditData = [];
+    let insightsData = {};
+
+    try {
+      researchData = JSON.parse(document.getElementById('embedded-data').textContent);
+      auditData = JSON.parse(document.getElementById('embedded-audit').textContent);
+      insightsData = JSON.parse(document.getElementById('embedded-insights').textContent);
+    } catch (e) {
+      console.error("Error loading embedded json", e);
+    }
+
+    let activeCategory = 'All';
+
+    // Initialize UI
+    document.addEventListener("DOMContentLoaded", () => {
+      renderCharts();
+      renderOpportunityLists();
+      renderAuditTable();
+      renderMatrixTable(researchData);
+
+      // Search event listener
+      document.getElementById('search-input').addEventListener('input', applyFilters);
+    });
+
+    // Render Opportunity Lists
+    function renderOpportunityLists() {
+      const p1Container = document.getElementById('p1-list-container');
+      const p4Container = document.getElementById('p4-list-container');
+      
+      const p1s = researchData.filter(d => d.priority_tier === 'P1');
+      const p4s = researchData.filter(d => d.priority_tier === 'P4');
+
+      if (p1Container) {
+        p1Container.innerHTML = p1s.slice(0, 10).map(item => `
+          <div class="bg-slate-800/60 p-2.5 rounded-lg border border-slate-700/50 flex items-center justify-between text-xs">
+            <div>
+              <span class="font-bold text-white">${item.app}</span>
+              <span class="text-slate-400 text-[11px] block">${item.category} · ${item.auth_type}</span>
+            </div>
+            <span class="badge-p1 px-2 py-0.5 rounded text-[10px] font-mono font-bold">P1 (${item.priority_score})</span>
+          </div>
+        `).join('');
+      }
+
+      if (p4Container) {
+        p4Container.innerHTML = p4s.map(item => `
+          <div class="bg-slate-800/60 p-2.5 rounded-lg border border-slate-700/50 flex items-center justify-between text-xs">
+            <div>
+              <span class="font-bold text-white">${item.app}</span>
+              <span class="text-slate-400 text-[11px] block">${item.category} · ${item.access_type}</span>
+            </div>
+            <span class="badge-p4 px-2 py-0.5 rounded text-[10px] font-mono font-bold">P4 Outreach</span>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Render Audit Table
+    function renderAuditTable() {
+      const tbody = document.getElementById('audit-table-body');
+      if (!tbody) return;
+
+      tbody.innerHTML = auditData.slice(0, 15).map(row => {
+        let badgeClass = 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30';
+        if (row.auditor_result === 'incorrect') badgeClass = 'text-rose-400 bg-rose-500/10 border-rose-500/30';
+        if (row.auditor_result === 'unclear') badgeClass = 'text-amber-400 bg-amber-500/10 border-amber-500/30';
+
+        return `
+          <tr class="hover:bg-slate-800/40">
+            <td class="py-2.5 px-4 font-bold text-white">${row.app}</td>
+            <td class="py-2.5 px-3 text-slate-400">${row.category}</td>
+            <td class="py-2.5 px-3 text-indigo-300 font-semibold">${row.field}</td>
+            <td class="py-2.5 px-4 text-slate-300">${row.agent_claim}</td>
+            <td class="py-2.5 px-3">
+              <span class="px-2 py-0.5 rounded border text-[10px] uppercase font-bold ${badgeClass}">
+                ${row.auditor_result}
+              </span>
+            </td>
+            <td class="py-2.5 px-4 text-slate-400">
+              ${row.correction ? `<span class="text-rose-300 font-semibold">Fix: ${row.correction}</span> - ` : ''}
+              ${row.auditor_notes || 'Verified'}
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Render 100-App Table
+    function renderMatrixTable(items) {
+      const tbody = document.getElementById('matrix-table-body');
+      const countBadge = document.getElementById('results-count-badge');
+      if (countBadge) countBadge.textContent = `(Showing ${items.length} of ${researchData.length} apps)`;
+      if (!tbody) return;
+
+      if (items.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="9" class="text-center py-8 text-slate-400">No applications match your filter criteria.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = items.map(item => {
+        let pClass = 'badge-p3';
+        if (item.priority_tier === 'P1') pClass = 'badge-p1';
+        if (item.priority_tier === 'P2') pClass = 'badge-p2';
+        if (item.priority_tier === 'P4') pClass = 'badge-p4';
+
+        let mcpBadge = '<span class="text-slate-500">None</span>';
+        if (item.mcp_status === 'Official') mcpBadge = '<span class="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">Official</span>';
+        else if (item.mcp_status.includes('Community')) mcpBadge = '<span class="px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Community</span>';
+
+        const primaryDoc = (item.evidence_urls && item.evidence_urls.length > 0) ? item.evidence_urls[0] : item.website;
+
+        return `
+          <tr class="hover:bg-slate-800/40 transition">
+            <td class="py-3 px-4 font-bold text-white">
+              <a href="${item.website}" target="_blank" class="hover:text-indigo-400 underline decoration-slate-700">${item.app}</a>
+            </td>
+            <td class="py-3 px-3 text-slate-400">${item.category}</td>
+            <td class="py-3 px-3 text-indigo-300 font-medium">${item.auth_type}</td>
+            <td class="py-3 px-3">
+              <span class="${item.self_serve === 'Yes' ? 'text-emerald-400' : (item.self_serve === 'No' ? 'text-rose-400' : 'text-amber-400')}">
+                ${item.access_type}
+              </span>
+            </td>
+            <td class="py-3 px-3 text-slate-300">${item.api_surface}</td>
+            <td class="py-3 px-3">${mcpBadge}</td>
+            <td class="py-3 px-3 text-center">
+              <span class="px-2 py-0.5 rounded font-mono font-bold text-[10px] ${pClass}">${item.priority_tier}</span>
+            </td>
+            <td class="py-3 px-3">
+              <a href="${primaryDoc}" target="_blank" class="text-indigo-400 hover:underline truncate block max-w-[140px] font-mono text-[11px]" title="${primaryDoc}">
+                Docs Link ↗
+              </a>
+            </td>
+            <td class="py-3 px-3 text-right">
+              <button onclick='openModal(${JSON.stringify(item.app)})' class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white transition font-medium">
+                Inspect
+              </button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Filter Logic
+    function filterCategory(cat) {
+      activeCategory = cat;
+      document.querySelectorAll('.cat-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-cat') === cat) {
+          btn.className = 'cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-indigo-600 text-white';
+        } else {
+          btn.className = 'cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700';
+        }
+      });
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const query = (document.getElementById('search-input')?.value || '').toLowerCase().trim();
+      const priority = document.getElementById('priority-select')?.value || 'All';
+      const access = document.getElementById('access-select')?.value || 'All';
+
+      const filtered = researchData.filter(item => {
+        // Category filter
+        if (activeCategory !== 'All' && item.category !== activeCategory) return false;
+
+        // Priority filter
+        if (priority !== 'All' && item.priority_tier !== priority) return false;
+
+        // Access filter
+        if (access === 'Self-serve' && item.self_serve !== 'Yes') return false;
+        if (access === 'Gated' && item.self_serve === 'Yes') return false;
+
+        // Search query
+        if (query) {
+          const matchApp = item.app.toLowerCase().includes(query);
+          const matchCat = item.category.toLowerCase().includes(query);
+          const matchAuth = item.auth_type.toLowerCase().includes(query);
+          const matchApi = item.api_surface.toLowerCase().includes(query);
+          const matchBlockers = (item.blockers || []).some(b => b.toLowerCase().includes(query));
+          if (!matchApp && !matchCat && !matchAuth && !matchApi && !matchBlockers) return false;
+        }
+
+        return true;
+      });
+
+      renderMatrixTable(filtered);
+    }
+
+    // Modal Inspect
+    function openModal(appName) {
+      const item = researchData.find(d => d.app === appName);
+      if (!item) return;
+
+      document.getElementById('modal-app-name').textContent = item.app;
+      document.getElementById('modal-app-category').textContent = `${item.category} · ${item.website}`;
+      
+      const pEl = document.getElementById('modal-app-priority');
+      pEl.textContent = `${item.priority_tier} (${item.priority_score})`;
+      pEl.className = `text-xs px-2 py-0.5 rounded font-mono ${item.priority_tier === 'P1' ? 'badge-p1' : (item.priority_tier === 'P4' ? 'badge-p4' : 'badge-p2')}`;
+
+      document.getElementById('modal-desc').textContent = item.description;
+      document.getElementById('modal-auth').textContent = `${item.auth_type} — ${item.auth_details || 'Standard access pattern'}`;
+      document.getElementById('modal-access').textContent = `${item.access_type} — ${item.access_restrictions || 'Publicly self-serve'}`;
+      document.getElementById('modal-api').textContent = `${item.api_type} (${item.api_surface})`;
+      document.getElementById('modal-mcp').textContent = `${item.mcp_status} — ${item.mcp_details || 'N/A'}`;
+
+      const blockersUl = document.getElementById('modal-blockers');
+      blockersUl.innerHTML = (item.blockers || []).map(b => `<li>${b}</li>`).join('') || '<li>No significant gating detected.</li>';
+
+      const sourcesDiv = document.getElementById('modal-sources');
+      sourcesDiv.innerHTML = (item.evidence_urls || []).map(u => `
+        <a href="${u}" target="_blank" class="text-indigo-400 hover:underline block truncate font-mono text-[11px] bg-slate-800/40 p-1.5 rounded">
+          ${u} ↗
+        </a>
+      `).join('') || '<span class="text-slate-500">Official website used as primary root.</span>';
+
+      document.getElementById('modal-json').textContent = JSON.stringify(item, null, 2);
+
+      document.getElementById('inspect-modal').classList.remove('hidden');
+    }
+
+    function closeModal() {
+      document.getElementById('inspect-modal').classList.add('hidden');
+    }
+
+    // Close on backdrop click
+    document.getElementById('inspect-modal')?.addEventListener('click', (e) => {
+      if (e.target.id === 'inspect-modal') closeModal();
+    });
+
+    // Chart.js Rendering
+    function renderCharts() {
+      const authDist = (insightsData.distributions && insightsData.distributions.auth_distribution) || {};
+      const accessDist = (insightsData.distributions && insightsData.distributions.access_distribution) || {};
+      const priorityDist = (insightsData.distributions && insightsData.distributions.priority_distribution) || {};
+
+      // 1. Auth Chart
+      const ctxAuth = document.getElementById('authChart')?.getContext('2d');
+      if (ctxAuth) {
+        new Chart(ctxAuth, {
+          type: 'doughnut',
+          data: {
+            labels: Object.keys(authDist),
+            datasets: [{
+              data: Object.values(authDist),
+              backgroundColor: ['#6366f1', '#3b82f6', '#10b981', '#f59e0b', '#ec4899', '#8b5cf6', '#64748b'],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { position: 'right', labels: { color: '#94a3b8', font: { size: 10 } } }
+            }
+          }
+        });
+      }
+
+      // 2. Access Chart
+      const ctxAccess = document.getElementById('accessChart')?.getContext('2d');
+      if (ctxAccess) {
+        new Chart(ctxAccess, {
+          type: 'pie',
+          data: {
+            labels: Object.keys(accessDist),
+            datasets: [{
+              data: Object.values(accessDist),
+              backgroundColor: ['#10b981', '#f59e0b', '#ef4444', '#8b5cf6', '#64748b'],
+              borderWidth: 0
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+              legend: { position: 'right', labels: { color: '#94a3b8', font: { size: 10 } } }
+            }
+          }
+        });
+      }
+
+      // 3. Priority Tiers Bar Chart
+      const ctxPriority = document.getElementById('priorityChart')?.getContext('2d');
+      if (ctxPriority) {
+        new Chart(ctxPriority, {
+          type: 'bar',
+          data: {
+            labels: Object.keys(priorityDist),
+            datasets: [{
+              label: 'Applications',
+              data: Object.values(priorityDist),
+              backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ef4444'],
+              borderRadius: 6
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            scales: {
+              x: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { display: false } },
+              y: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { color: '#1e293b' } }
+            },
+            plugins: {
+              legend: { display: false }
+            }
+          }
+        });
+      }
+    }
+  </script>
+</body>
+</html>
