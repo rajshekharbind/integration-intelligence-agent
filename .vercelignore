@@ -1,0 +1,7 @@
+# Ignore python requirements on Vercel build so it deploys as pure static HTML
+requirements.txt
+.env
+.venv/
+tests/
+__pycache__/
+*.pyc
