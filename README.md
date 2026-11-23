@@ -12,6 +12,7 @@ An end-to-end, enterprise-grade AI research and data verification system built f
 ---
 
 ## 🚀 Live Demo & Deliverables
+Project Link: https://integration-intelligence-agent-nine.vercel.app/
 
 - **Live Case Study Dashboard**: Deployed via GitHub Pages at [`docs/index.html`](docs/index.html) (or `output/index.html`).
 - **100-App Dataset**: Structured records saved in [`data/research_results.json`](data/research_results.json) & [`data/apps.csv`](data/apps.csv).
