@@ -1,0 +1,724 @@
+{
+  "metadata": {
+    "total_apps": 100,
+    "total_categories": 10,
+    "generated_at": "2026-11-23T11:03:50.839913+00:00Z"
+  },
+  "executive_summary": {
+    "most_common_auth": "OAuth 2.0 / API Key",
+    "self_serve_percentage": "74.0%",
+    "self_serve_count": 74,
+    "easy_wins_count": 63,
+    "outreach_candidates_count": 8,
+    "official_mcp_ecosystem_count": 12,
+    "audit_accuracy_percentage": "95.92%"
+  },
+  "distributions": {
+    "auth_distribution": {
+      "OAuth 2.0 / API Key": 43,
+      "API Key": 23,
+      "OAuth 2.0": 17,
+      "Bearer Token": 4,
+      "Basic Auth": 3,
+      "Bot API Token via @BotFather": 1,
+      "Session / Web Token (No official public API)": 1,
+      "API Token (Authorization header)": 1,
+      "CLI / No Auth (Local Open Source Python Script)": 1,
+      "anon / service_role JWT": 1,
+      "HTTP Digest Auth (Public + Private Key)": 1,
+      "DD-API-KEY + DD-APPLICATION-KEY dual headers": 1,
+      "PLAID-CLIENT-ID + PLAID-SECRET headers": 1,
+      "Client Certificate (SSL Client Auth) + Merchant ID / Hash": 1,
+      "No Auth (Local Open Source CLI / npm package)": 1
+    },
+    "access_distribution": {
+      "Self-serve": 74,
+      "Self-serve with restrictions": 18,
+      "Partner approval required": 8
+    },
+    "self_serve_distribution": {
+      "Yes": 74,
+      "Partial": 18,
+      "No": 8
+    },
+    "mcp_distribution": {
+      "Not available": 45,
+      "Community / 3rd Party": 43,
+      "Official": 12
+    },
+    "priority_distribution": {
+      "P1": 63,
+      "P2": 29,
+      "P4": 8
+    },
+    "buildability_distribution": {
+      "P1 - Easy Win": 63,
+      "P2 - Standard Build": 29,
+      "P4 - Outreach Required": 8
+    },
+    "category_distribution": {
+      "CRM and Sales": 10,
+      "Support and Helpdesk": 10,
+      "Communications and Messaging": 10,
+      "Marketing": 10,
+      "Ecommerce": 10,
+      "Finance and Fintech": 10,
+      "Data": 10,
+      "Developer": 10,
+      "Productivity and Project Management": 10,
+      "AI": 10
+    }
+  },
+  "easy_wins": [
+    {
+      "app": "HubSpot",
+      "category": "CRM and Sales",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Pipedrive",
+      "category": "CRM and Sales",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Attio",
+      "category": "CRM and Sales",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Twenty",
+      "category": "CRM and Sales",
+      "auth_type": "API Key",
+      "api_type": "REST / GraphQL",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Podio",
+      "category": "CRM and Sales",
+      "auth_type": "OAuth 2.0",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Zoho CRM",
+      "category": "CRM and Sales",
+      "auth_type": "OAuth 2.0",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Close",
+      "category": "CRM and Sales",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Zendesk",
+      "category": "Support and Helpdesk",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Freshdesk",
+      "category": "Support and Helpdesk",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Intercom",
+      "category": "Support and Helpdesk",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Help Scout",
+      "category": "Support and Helpdesk",
+      "auth_type": "OAuth 2.0",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Gorgias",
+      "category": "Support and Helpdesk",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Front",
+      "category": "Support and Helpdesk",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Slack",
+      "category": "Communications and Messaging",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Official",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Discord",
+      "category": "Communications and Messaging",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Mailchimp",
+      "category": "Marketing",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Klaviyo",
+      "category": "Marketing",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Shopify",
+      "category": "Ecommerce",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST / GraphQL",
+      "mcp_status": "Official",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Stripe",
+      "category": "Finance and Fintech",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Official",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "BigCommerce",
+      "category": "Ecommerce",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST / GraphQL",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "GitHub",
+      "category": "Developer",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST / GraphQL",
+      "mcp_status": "Official",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Linear",
+      "category": "Productivity and Project Management",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "GraphQL",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Jira",
+      "category": "Productivity and Project Management",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Official",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Asana",
+      "category": "Productivity and Project Management",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "ClickUp",
+      "category": "Productivity and Project Management",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Sentry",
+      "category": "Developer",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Official",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Notion",
+      "category": "Productivity and Project Management",
+      "auth_type": "OAuth 2.0",
+      "api_type": "REST",
+      "mcp_status": "Official",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Coda",
+      "category": "Productivity and Project Management",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Airtable",
+      "category": "Productivity and Project Management",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "QuickBooks",
+      "category": "Finance and Fintech",
+      "auth_type": "OAuth 2.0",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Xero",
+      "category": "Finance and Fintech",
+      "auth_type": "OAuth 2.0",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Pylon",
+      "category": "Support and Helpdesk",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "LiveAgent",
+      "category": "Support and Helpdesk",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Plain",
+      "category": "Support and Helpdesk",
+      "auth_type": "API Key",
+      "api_type": "GraphQL",
+      "mcp_status": "Official",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Twilio",
+      "category": "Communications and Messaging",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Zoho Cliq",
+      "category": "Communications and Messaging",
+      "auth_type": "OAuth 2.0",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Lark (Larksuite)",
+      "category": "Communications and Messaging",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Pumble",
+      "category": "Communications and Messaging",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Aircall",
+      "category": "Communications and Messaging",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Vonage",
+      "category": "Communications and Messaging",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "GoHighLevel",
+      "category": "Marketing",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "systeme.io",
+      "category": "Marketing",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Pinterest",
+      "category": "Marketing",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Threads (Meta)",
+      "category": "Marketing",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "SendGrid",
+      "category": "Marketing",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Ecwid",
+      "category": "Ecommerce",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Gumroad",
+      "category": "Ecommerce",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "MrScraper",
+      "category": "Data",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Apify",
+      "category": "Data",
+      "auth_type": "Bearer Token",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Firecrawl",
+      "category": "Data",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Bright Data",
+      "category": "Data",
+      "auth_type": "Bearer Token",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Vercel",
+      "category": "Developer",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Official",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Netlify",
+      "category": "Developer",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Cloudflare",
+      "category": "Developer",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Official",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Neo4j",
+      "category": "Developer",
+      "auth_type": "OAuth 2.0",
+      "api_type": "REST",
+      "mcp_status": "Official",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Smartsheet",
+      "category": "Productivity and Project Management",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Harvest",
+      "category": "Productivity and Project Management",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Binance",
+      "category": "Finance and Fintech",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Fathom",
+      "category": "AI",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Reducto",
+      "category": "AI",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "higgsfield",
+      "category": "AI",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "YouTube Transcript",
+      "category": "AI",
+      "auth_type": "API Key",
+      "api_type": "REST",
+      "mcp_status": "Community / 3rd Party",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    },
+    {
+      "app": "Grain",
+      "category": "AI",
+      "auth_type": "OAuth 2.0 / API Key",
+      "api_type": "REST",
+      "mcp_status": "Not available",
+      "priority_score": 92,
+      "reason": "Public developer documentation, immediate self-serve credential creation, standard modern auth protocol."
+    }
+  ],
+  "outreach_candidates": [
+    {
+      "app": "DealCloud",
+      "category": "CRM and Sales",
+      "access_type": "Partner approval required",
+      "auth_type": "OAuth 2.0",
+      "priority_score": 30,
+      "blocker": "Enterprise partner approval required; Contact sales gate; Private developer documentation",
+      "recommendation": "Initiate partner BD contact, sign developer NDA, or explore official tech partnership."
+    },
+    {
+      "app": "Ahrefs",
+      "category": "Data",
+      "access_type": "Partner approval required",
+      "auth_type": "Bearer Token",
+      "priority_score": 30,
+      "blocker": "Requires Enterprise plan for full API access; Strict monthly workspace credit limits",
+      "recommendation": "Initiate partner BD contact, sign developer NDA, or explore official tech partnership."
+    },
+    {
+      "app": "Salesforce Commerce Cloud",
+      "category": "Ecommerce",
+      "access_type": "Partner approval required",
+      "auth_type": "OAuth 2.0",
+      "priority_score": 30,
+      "blocker": "Enterprise Salesforce contract required; Organization ID and Client ID binding",
+      "recommendation": "Initiate partner BD contact, sign developer NDA, or explore official tech partnership."
+    },
+    {
+      "app": "Amazon Selling Partner",
+      "category": "Ecommerce",
+      "access_type": "Partner approval required",
+      "auth_type": "OAuth 2.0",
+      "priority_score": 30,
+      "blocker": "Developer registration approval required; Strict Data Protection Policy audit; AWS IAM SigV4 signing",
+      "recommendation": "Initiate partner BD contact, sign developer NDA, or explore official tech partnership."
+    },
+    {
+      "app": "fanbasis",
+      "category": "Ecommerce",
+      "access_type": "Partner approval required",
+      "auth_type": "Session / Web Token (No official public API)",
+      "priority_score": 30,
+      "blocker": "No public API documentation available; creator portal closed",
+      "recommendation": "Initiate partner BD contact, sign developer NDA, or explore official tech partnership."
+    },
+    {
+      "app": "Waterfall.io",
+      "category": "Data",
+      "access_type": "Partner approval required",
+      "auth_type": "API Key",
+      "priority_score": 30,
+      "blocker": "B2B contact intel requires sales conversation & credit contract",
+      "recommendation": "Initiate partner BD contact, sign developer NDA, or explore official tech partnership."
+    },
+    {
+      "app": "Paygent Connect",
+      "category": "Finance and Fintech",
+      "access_type": "Partner approval required",
+      "auth_type": "Client Certificate (SSL Client Auth) + Merchant ID / Hash",
+      "priority_score": 30,
+      "blocker": "Japanese merchant acquiring contract required; Dedicated IP certificate registration",
+      "recommendation": "Initiate partner BD contact, sign developer NDA, or explore official tech partnership."
+    },
+    {
+      "app": "PitchBook",
+      "category": "Finance and Fintech",
+      "access_type": "Partner approval required",
+      "auth_type": "OAuth 2.0 / API Key",
+      "priority_score": 30,
+      "blocker": "High-value institutional sales contract required ($20k+ / year minimum)",
+      "recommendation": "Initiate partner BD contact, sign developer NDA, or explore official tech partnership."
+    }
+  ],
+  "audit_metrics": {
+    "total_audited_apps": 20,
+    "total_claims": 100,
+    "correct": 94,
+    "incorrect": 4,
+    "unclear": 2,
+    "evaluable_claims": 98,
+    "accuracy_percentage": 95.92
+  }
+}
