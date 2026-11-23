@@ -1,0 +1,25 @@
+# Environment Variables
+.env
+.env.local
+
+# Virtual Environments
+.venv/
+venv/
+ENV/
+env/
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+
+# Generated Artifacts & Large Data caches
+data/cache/
+*.log
+*.sqlite3
+
+# OS Specific
+.DS_Store
+Thumbs.db
