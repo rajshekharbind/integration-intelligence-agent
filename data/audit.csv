@@ -1,0 +1,101 @@
+app,category,field,agent_claim,evidence_url,auditor_result,correction,auditor_notes
+Salesforce,CRM and Sales,auth,OAuth 2.0,https://developer.salesforce.com/docs,correct,,Verified OAuth 2.0 Web Server Flow and Connected Apps in official Salesforce docs.
+Salesforce,CRM and Sales,self_serve,Partial,https://developer.salesforce.com/docs,incorrect,Partial,Requires Developer Edition signup; production org requires enterprise license.
+Salesforce,CRM and Sales,api,REST,https://developer.salesforce.com/docs,correct,,"REST, SOAP, and Bulk API v2 all supported."
+Salesforce,CRM and Sales,mcp,Community / 3rd Party,https://developer.salesforce.com/docs,correct,,No official Salesforce MCP server from Salesforce yet; community adapters only.
+Salesforce,CRM and Sales,buildability,P2 - Standard Build,https://developer.salesforce.com/docs,correct,,Classified as P2/P3 due to sandbox and Connected App administration.
+HubSpot,CRM and Sales,auth,OAuth 2.0 / API Key,https://developers.hubspot.com/docs/api/overview,correct,,OAuth 2.0 and Private App tokens verified via HubSpot developer portal.
+HubSpot,CRM and Sales,self_serve,Yes,https://developers.hubspot.com/docs/api/overview,incorrect,Partial,"Free developer account exists, but certain marketing scopes require paid Professional tier."
+HubSpot,CRM and Sales,api,REST,https://developers.hubspot.com/docs/api/overview,correct,,Standard REST API v3 with comprehensive OpenAPI specifications.
+HubSpot,CRM and Sales,mcp,Community / 3rd Party,https://developers.hubspot.com/docs/api/overview,unclear,Unknown,Third-party community MCP implementations exist; official status unannounced.
+HubSpot,CRM and Sales,buildability,P1 - Easy Win,https://developers.hubspot.com/docs/api/overview,correct,,P1/P2 classification accurate for standard CRM objects.
+Zendesk,Support and Helpdesk,auth,OAuth 2.0 / API Key,https://developer.zendesk.com/api-reference/,correct,,OAuth 2.0 and API token (email/token) verified.
+Zendesk,Support and Helpdesk,self_serve,Yes,https://developer.zendesk.com/api-reference/,correct,,Immediate trial and developer sandbox access available.
+Zendesk,Support and Helpdesk,api,REST,https://developer.zendesk.com/api-reference/,correct,,"Comprehensive REST API for tickets, users, and organizations."
+Zendesk,Support and Helpdesk,mcp,Community / 3rd Party,https://developer.zendesk.com/api-reference/,correct,,Community MCP implementation on GitHub.
+Zendesk,Support and Helpdesk,buildability,P1 - Easy Win,https://developer.zendesk.com/api-reference/,correct,,P1 Easy Win due to standard REST endpoints and clear docs.
+Intercom,Support and Helpdesk,auth,OAuth 2.0 / API Key,https://developers.intercom.com/docs,correct,,OAuth 2.0 and Access Tokens verified in Intercom Developer Hub.
+Intercom,Support and Helpdesk,self_serve,Yes,https://developers.intercom.com/docs,correct,,Free developer workspace can be created without credit card.
+Intercom,Support and Helpdesk,api,REST,https://developers.intercom.com/docs,correct,,REST API v2.11 with JSON payloads.
+Intercom,Support and Helpdesk,mcp,Community / 3rd Party,https://developers.intercom.com/docs,correct,,Community MCP server available.
+Intercom,Support and Helpdesk,buildability,P1 - Easy Win,https://developers.intercom.com/docs,correct,,P2 buildability due to webhook signature verification requirements.
+Slack,Communications and Messaging,auth,OAuth 2.0 / API Key,https://api.slack.com/,correct,,OAuth 2.0 bot & user tokens with granular permission scopes.
+Slack,Communications and Messaging,self_serve,Yes,https://api.slack.com/,correct,,Immediate app creation via api.slack.com/apps.
+Slack,Communications and Messaging,api,REST,https://api.slack.com/,correct,,"Slack Web API (REST), Events API, and Socket Mode."
+Slack,Communications and Messaging,mcp,Official,https://api.slack.com/,correct,,Official Slack MCP server confirmed in Model Context Protocol repository.
+Slack,Communications and Messaging,buildability,P1 - Easy Win,https://api.slack.com/,correct,,P1 Easy Win: gold standard developer experience and instant bot token testing.
+Discord,Communications and Messaging,auth,OAuth 2.0 / API Key,https://discord.com/developers/docs/intro,correct,,Bot Token and OAuth 2.0 Bearer authorization confirmed.
+Discord,Communications and Messaging,self_serve,Yes,https://discord.com/developers/docs/intro,correct,,Discord Developer Portal allows instant bot token creation.
+Discord,Communications and Messaging,api,REST,https://discord.com/developers/docs/intro,correct,,REST API v10 and Gateway WebSocket API.
+Discord,Communications and Messaging,mcp,Community / 3rd Party,https://discord.com/developers/docs/intro,correct,,Community MCP adapters available.
+Discord,Communications and Messaging,buildability,P1 - Easy Win,https://discord.com/developers/docs/intro,correct,,P1 Easy Win for channel messaging and bot interactions.
+Mailchimp,"Marketing, Ads, Email and Social",auth,OAuth 2.0 / API Key,https://mailchimp.com/developer/marketing/api/,correct,,OAuth 2.0 and API Key (HTTP Basic) verified.
+Mailchimp,"Marketing, Ads, Email and Social",self_serve,Yes,https://mailchimp.com/developer/marketing/api/,correct,,Free tier allows API key creation.
+Mailchimp,"Marketing, Ads, Email and Social",api,REST,https://mailchimp.com/developer/marketing/api/,correct,,Marketing REST API v3.
+Mailchimp,"Marketing, Ads, Email and Social",mcp,Not available,https://mailchimp.com/developer/marketing/api/,correct,,Community MCP server.
+Mailchimp,"Marketing, Ads, Email and Social",buildability,P1 - Easy Win,https://mailchimp.com/developer/marketing/api/,correct,,P1 Easy Win: datacenter prefix (e.g. us19) in URL is only minor nuance.
+Klaviyo,"Marketing, Ads, Email and Social",auth,OAuth 2.0 / API Key,https://developers.klaviyo.com/en/reference/overview,correct,,API Key (Klaviyo-API-Key) and OAuth 2.0 verified.
+Klaviyo,"Marketing, Ads, Email and Social",self_serve,Yes,https://developers.klaviyo.com/en/reference/overview,correct,,Instant account and API credential generation.
+Klaviyo,"Marketing, Ads, Email and Social",api,REST,https://developers.klaviyo.com/en/reference/overview,correct,,REST API complying with JSON:API spec.
+Klaviyo,"Marketing, Ads, Email and Social",mcp,Community / 3rd Party,https://developers.klaviyo.com/en/reference/overview,correct,,Community MCP wrapper available.
+Klaviyo,"Marketing, Ads, Email and Social",buildability,P1 - Easy Win,https://developers.klaviyo.com/en/reference/overview,correct,,P1 Easy Win: clean JSON:API endpoints.
+Shopify,Ecommerce,auth,OAuth 2.0 / API Key,https://shopify.dev/docs/api/admin-rest,correct,,OAuth 2.0 and Admin API Access Tokens verified in Shopify Dev docs.
+Shopify,Ecommerce,self_serve,Yes,https://shopify.dev/docs/api/admin-rest,correct,,Shopify Partners account provides free development stores.
+Shopify,Ecommerce,api,REST / GraphQL,https://shopify.dev/docs/api/admin-rest,correct,,Admin REST and GraphQL APIs.
+Shopify,Ecommerce,mcp,Official,https://shopify.dev/docs/api/admin-rest,correct,,Official Shopify MCP server available in ecosystem.
+Shopify,Ecommerce,buildability,P1 - Easy Win,https://shopify.dev/docs/api/admin-rest,correct,,P1 Easy Win for store admin integrations.
+BigCommerce,Ecommerce,auth,OAuth 2.0 / API Key,https://developer.bigcommerce.com/docs/rest-management,correct,,OAuth 2.0 and X-Auth-Token header.
+BigCommerce,Ecommerce,self_serve,Yes,https://developer.bigcommerce.com/docs/rest-management,correct,,Free developer trial store provides immediate API keys.
+BigCommerce,Ecommerce,api,REST / GraphQL,https://developer.bigcommerce.com/docs/rest-management,correct,,REST API v3 and GraphQL Storefront API.
+BigCommerce,Ecommerce,mcp,Not available,https://developer.bigcommerce.com/docs/rest-management,correct,,Community adapter available.
+BigCommerce,Ecommerce,buildability,P1 - Easy Win,https://developer.bigcommerce.com/docs/rest-management,correct,,P1 Easy Win: comprehensive catalog and order APIs.
+Apify,"Data, SEO and Scraping",auth,Bearer Token,https://docs.apify.com/api/v2,correct,,API Token (Bearer Token) verified.
+Apify,"Data, SEO and Scraping",self_serve,Yes,https://docs.apify.com/api/v2,correct,,Instant free tier account with $5 monthly credit.
+Apify,"Data, SEO and Scraping",api,REST,https://docs.apify.com/api/v2,correct,,REST API v2 for running actors and querying datasets.
+Apify,"Data, SEO and Scraping",mcp,Community / 3rd Party,https://docs.apify.com/api/v2,correct,,Community MCP server available.
+Apify,"Data, SEO and Scraping",buildability,P1 - Easy Win,https://docs.apify.com/api/v2,correct,,P1 Easy Win for web scraping and actor triggering.
+Firecrawl,"Data, SEO and Scraping",auth,API Key,https://docs.firecrawl.dev/,correct,,API Key (Bearer Token).
+Firecrawl,"Data, SEO and Scraping",self_serve,Yes,https://docs.firecrawl.dev/,correct,,Instant API key generation on free tier (500 credits).
+Firecrawl,"Data, SEO and Scraping",api,REST,https://docs.firecrawl.dev/,correct,,REST API specifically designed for AI document extraction.
+Firecrawl,"Data, SEO and Scraping",mcp,Community / 3rd Party,https://docs.firecrawl.dev/,correct,,Community Firecrawl MCP server available.
+Firecrawl,"Data, SEO and Scraping",buildability,P1 - Easy Win,https://docs.firecrawl.dev/,correct,,P1 Easy Win: purpose-built for LLM scraping.
+GitHub,"Developer, Infra and Data platforms",auth,OAuth 2.0 / API Key,https://docs.github.com/en/rest,correct,,"OAuth 2.0, GitHub App JWT, and Personal Access Tokens verified."
+GitHub,"Developer, Infra and Data platforms",self_serve,Yes,https://docs.github.com/en/rest,correct,,Immediate developer access and token generation.
+GitHub,"Developer, Infra and Data platforms",api,REST / GraphQL,https://docs.github.com/en/rest,correct,,REST API and GraphQL API v4.
+GitHub,"Developer, Infra and Data platforms",mcp,Official,https://docs.github.com/en/rest,correct,,Official GitHub MCP server provided by GitHub/Anthropic.
+GitHub,"Developer, Infra and Data platforms",buildability,P1 - Easy Win,https://docs.github.com/en/rest,correct,,P1 Easy Win: top-tier documentation and global standard.
+Cloudflare,"Developer, Infra and Data platforms",auth,API Key,https://developers.cloudflare.com/api/,correct,,Scoped API Tokens (Bearer) and Global API Key.
+Cloudflare,"Developer, Infra and Data platforms",self_serve,Yes,https://developers.cloudflare.com/api/,correct,,Instant developer token generation in dashboard.
+Cloudflare,"Developer, Infra and Data platforms",api,REST,https://developers.cloudflare.com/api/,correct,,"REST API v4 covering DNS, Workers, and CDN."
+Cloudflare,"Developer, Infra and Data platforms",mcp,Official,https://developers.cloudflare.com/api/,correct,,Official Cloudflare MCP server announced.
+Cloudflare,"Developer, Infra and Data platforms",buildability,P1 - Easy Win,https://developers.cloudflare.com/api/,correct,,P1 Easy Win: granular token permissions.
+Notion,Productivity and Project Management,auth,OAuth 2.0,https://developers.notion.com/,correct,,Internal Integration Secret and OAuth 2.0.
+Notion,Productivity and Project Management,self_serve,Yes,https://developers.notion.com/,correct,,Free workspace integration setup at notion.so/my-integrations.
+Notion,Productivity and Project Management,api,REST,https://developers.notion.com/,correct,,REST API with block/page models.
+Notion,Productivity and Project Management,mcp,Official,https://developers.notion.com/,correct,,Official Notion MCP server available.
+Notion,Productivity and Project Management,buildability,P1 - Easy Win,https://developers.notion.com/,incorrect,P2 - Standard Build,Requires explicit page sharing with integration token before queries succeed.
+Airtable,Productivity and Project Management,auth,OAuth 2.0 / API Key,https://airtable.com/developers/web/api/introduction,correct,,Personal Access Token (PAT) with granular scopes and OAuth 2.0.
+Airtable,Productivity and Project Management,self_serve,Yes,https://airtable.com/developers/web/api/introduction,correct,,Instant token creation at airtable.com/create/tokens.
+Airtable,Productivity and Project Management,api,REST,https://airtable.com/developers/web/api/introduction,correct,,REST API auto-generated for each base.
+Airtable,Productivity and Project Management,mcp,Community / 3rd Party,https://airtable.com/developers/web/api/introduction,correct,,Community MCP server available.
+Airtable,Productivity and Project Management,buildability,P1 - Easy Win,https://airtable.com/developers/web/api/introduction,correct,,P1 Easy Win: interactive per-base API docs.
+Stripe,Finance and Fintech,auth,API Key,https://stripe.com/docs/api,correct,,Secret API Key (Bearer) and Stripe Connect OAuth 2.0.
+Stripe,Finance and Fintech,self_serve,Yes,https://stripe.com/docs/api,correct,,Instant test mode credentials without bank verification.
+Stripe,Finance and Fintech,api,REST,https://stripe.com/docs/api,correct,,REST API with versioning headers.
+Stripe,Finance and Fintech,mcp,Official,https://stripe.com/docs/api,correct,,Official Stripe Agent Toolkit and MCP server.
+Stripe,Finance and Fintech,buildability,P1 - Easy Win,https://stripe.com/docs/api,correct,,P1 Easy Win: world-class developer docs and SDKs.
+Plaid,Finance and Fintech,auth,PLAID-CLIENT-ID + PLAID-SECRET headers,https://plaid.com/docs/,correct,,PLAID-CLIENT-ID + PLAID-SECRET headers.
+Plaid,Finance and Fintech,self_serve,Yes,https://plaid.com/docs/,correct,,Instant sandbox keys; production requires compliance questionnaire.
+Plaid,Finance and Fintech,api,REST,https://plaid.com/docs/,correct,,"REST API for banking, auth, and balances."
+Plaid,Finance and Fintech,mcp,Community / 3rd Party,https://plaid.com/docs/,correct,,Community MCP server available.
+Plaid,Finance and Fintech,buildability,P2 - Standard Build,https://plaid.com/docs/,correct,,"P2 Standard Build: sandbox is instant, production requires questionnaire."
+Devin,"AI, Research and Media-native",auth,API Key,https://docs.devin.ai/,correct,,API Key (Bearer Token).
+Devin,"AI, Research and Media-native",self_serve,Partial,https://docs.devin.ai/,incorrect,No,Cognition Devin currently gated behind enterprise waitlist and approval.
+Devin,"AI, Research and Media-native",api,REST,https://docs.devin.ai/,correct,,Devin API for session creation and execution.
+Devin,"AI, Research and Media-native",mcp,Official,https://docs.devin.ai/,correct,,Official Devin MCP server support.
+Devin,"AI, Research and Media-native",buildability,P2 - Standard Build,https://docs.devin.ai/,correct,,P4 Outreach Required until public self-serve waitlist clears.
+Otter AI,"AI, Research and Media-native",auth,OAuth 2.0 / API Key,https://help.otter.ai/,correct,,OAuth 2.0 / Enterprise API Key.
+Otter AI,"AI, Research and Media-native",self_serve,Partial,https://help.otter.ai/,correct,,Enterprise tier required for automated recording webhook exports.
+Otter AI,"AI, Research and Media-native",api,REST,https://help.otter.ai/,correct,,REST API for transcripts and speech assets.
+Otter AI,"AI, Research and Media-native",mcp,Community / 3rd Party,https://help.otter.ai/,unclear,Unknown,Community prototypes referenced; official MCP unreleased.
+Otter AI,"AI, Research and Media-native",buildability,P2 - Standard Build,https://help.otter.ai/,correct,,P3 Conditional Build: requires business/enterprise subscription.
