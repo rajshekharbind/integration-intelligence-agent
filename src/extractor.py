@@ -1,7 +1,8 @@
 import json
 import logging
 from typing import Dict, Any, List, Optional
-from src.config import OPENAI_API_KEY, MODEL_NAME
+import httpx
+from src.config import OPENAI_API_KEY, MODEL_NAME, GEMINI_API_KEY, GEMINI_MODEL, REQUEST_TIMEOUT
 from src.models import (
     AppResearchResult, AuthType, AccessType, APIType, MCPStatus, BuildabilityTier
 )
@@ -202,11 +203,79 @@ def extract_with_heuristics(app: str, category: str, website: str, text: str) ->
     }
 
 
+def extract_with_gemini(app: str, category: str, website: str, raw_text: str) -> Optional[Dict[str, Any]]:
+    """Calls Google Gemini API (gemini-3.5-flash-lite) to extract structured integration intelligence."""
+    if not GEMINI_API_KEY:
+        return None
+
+    try:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent?key={GEMINI_API_KEY}"
+        user_prompt = f"""You are an expert AI API & Integration Architect at Composio.
+Extract integration intelligence for:
+Application: {app}
+Category: {category}
+Website: {website}
+
+Documentation Text:
+{raw_text[:6000]}
+
+Respond ONLY with valid JSON strictly conforming to this schema:
+{{
+  "description": "Concise 1-2 sentence description of what the software does.",
+  "auth_type": "OAuth 2.0 | API Key | Bearer Token | Basic Auth | OAuth 2.0 / API Key | JWT / Key Pair | Session / Custom | Unknown",
+  "auth_details": "Specific authorization mechanisms.",
+  "self_serve": "Yes | Partial | No | Unknown",
+  "access_type": "Self-serve | Self-serve with restrictions | Paid / Tier gated | Partner approval required | Unknown",
+  "access_restrictions": "Any developer gating or sandbox requirements.",
+  "api_type": "REST | GraphQL | REST / GraphQL | gRPC | Webhooks only | Unknown",
+  "api_surface": "Specific API surfaces provided.",
+  "mcp_status": "Official | Community / 3rd Party | Not available | Unknown",
+  "mcp_details": "MCP server details or community adapter status.",
+  "buildability": "P1 - Easy Win | P2 - Standard Build | P3 - Conditional / Complex | P4 - Outreach Required",
+  "priority_tier": "P1 | P2 | P3 | P4",
+  "priority_score": 88,
+  "blockers": ["2-4 concrete obstacles like rate limits or scopes"],
+  "confidence_score": 0.95
+}}
+"""
+        payload = {
+            "contents": [{"parts": [{"text": user_prompt}]}],
+            "generationConfig": {"response_mime_type": "application/json", "temperature": 0.1}
+        }
+        with httpx.Client(timeout=REQUEST_TIMEOUT) as client:
+            resp = client.post(url, json=payload)
+            if resp.status_code == 200:
+                data = resp.json()
+                text = data["candidates"][0]["content"]["parts"][0]["text"]
+                return json.loads(text)
+            else:
+                logger.warning(f"Gemini API status {resp.status_code}: {resp.text[:150]}")
+                return None
+    except Exception as e:
+        logger.warning(f"Gemini extraction error for {app}: {e}")
+        return None
+
+
 def extract_intelligence(app: str, category: str, website: str, combined_text: str) -> Dict[str, Any]:
-    """Main extraction entrypoint: tries LLM first, falls back gracefully."""
+    """Main extraction entrypoint: tries Google Gemini first, then OpenAI, then heuristics."""
+    # 1. Try Google Gemini API
+    gemini_res = extract_with_gemini(app, category, website, combined_text)
+    if gemini_res and "auth_type" in gemini_res and "self_serve" in gemini_res:
+        tier, p_tier, p_score = calculate_buildability(
+            gemini_res.get("self_serve", "Unknown"),
+            gemini_res.get("access_type", "Unknown"),
+            gemini_res.get("auth_type", "Unknown"),
+            gemini_res.get("api_type", "Unknown"),
+            gemini_res.get("blockers", [])
+        )
+        gemini_res["buildability"] = tier
+        gemini_res["priority_tier"] = p_tier
+        gemini_res["priority_score"] = p_score
+        return gemini_res
+
+    # 2. Try OpenAI API
     llm_res = extract_with_llm(app, category, website, combined_text)
     if llm_res and "auth_type" in llm_res and "self_serve" in llm_res:
-        # Re-verify buildability priority through deterministic formula
         tier, p_tier, p_score = calculate_buildability(
             llm_res.get("self_serve", "Unknown"),
             llm_res.get("access_type", "Unknown"),
@@ -219,4 +288,5 @@ def extract_intelligence(app: str, category: str, website: str, combined_text: s
         llm_res["priority_score"] = p_score
         return llm_res
 
+    # 3. Fallback to Grounded Heuristics
     return extract_with_heuristics(app, category, website, combined_text)

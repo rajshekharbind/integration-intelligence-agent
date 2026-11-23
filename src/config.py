@@ -18,6 +18,8 @@ load_dotenv(BASE_DIR / ".env")
 
 # API Keys & LLM Config
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY", "").strip()
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-3.5-flash-lite").strip()
 TAVILY_API_KEY = os.getenv("TAVILY_API_KEY", "").strip()
 MODEL_NAME = os.getenv("MODEL_NAME", "gpt-4o-mini")
 
