@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Integration Intelligence Agent | 100-App API Research & Prioritization</title>
+  <title>Integration Intelligence | AI-Powered API Research & Prioritization</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -15,18 +15,15 @@
             brand: {
               50: '#eef2ff',
               100: '#e0e7ff',
-              400: '#818cf8',
+              200: '#c7d2fe',
               500: '#6366f1',
               600: '#4f46e5',
-              900: '#1e1b4b',
-            },
-            surface: {
-              DEFAULT: '#0f172a',
-              card: '#1e293b',
-              border: '#334155',
-              hover: '#2d3748',
-              badge: '#172554'
+              700: '#4338ca',
             }
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            mono: ['JetBrains Mono', 'Fira Code', 'Consolas', 'monospace']
           }
         }
       }
@@ -35,70 +32,173 @@
   <!-- Chart.js CDN -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
-    /* Custom scrollbar and aesthetics */
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: #0b1120; }
-    ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #475569; }
-    .glass-card {
-      background: rgba(30, 41, 59, 0.7);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.08);
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar { width: 7px; height: 7px; }
+    .dark ::-webkit-scrollbar-track { background: #070b14; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    .dark ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+    .dark ::-webkit-scrollbar-thumb:hover { background: #334155; }
+    ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+    /* Impactful Radial Glows and Gradients */
+    .glow-aura {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.18;
+      transition: opacity 0.5s ease;
     }
-    .badge-p1 { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
-    .badge-p2 { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
-    .badge-p3 { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
-    .badge-p4 { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .dark .glow-aura-primary {
+      background: radial-gradient(circle, #6366f1 0%, #a855f7 40%, transparent 70%);
+      top: -100px;
+      left: 20%;
+    }
+    .dark .glow-aura-secondary {
+      background: radial-gradient(circle, #ec4899 0%, #3b82f6 50%, transparent 70%);
+      top: 400px;
+      right: 10%;
+    }
+    .glow-aura-primary {
+      background: radial-gradient(circle, #818cf8 0%, #c084fc 40%, transparent 70%);
+      top: -150px;
+      left: 15%;
+      opacity: 0.12;
+    }
+
+    /* Glassmorphism Surface Styles */
+    .glass-surface {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      transition: all 0.25s ease;
+    }
+    .dark .glass-surface {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.5);
+    }
+    .glass-surface {
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid rgba(226, 232, 240, 0.8);
+      box-shadow: 0 4px 20px -2px rgba(99, 102, 241, 0.05);
+    }
+
+    /* Priority Badges */
+    .badge-p1 {
+      background: rgba(16, 185, 129, 0.12);
+      color: #10b981;
+      border: 1px solid rgba(16, 185, 129, 0.28);
+    }
+    .dark .badge-p1 {
+      color: #34d399;
+      box-shadow: 0 0 10px rgba(16, 185, 129, 0.15);
+    }
+
+    .badge-p2 {
+      background: rgba(59, 130, 246, 0.12);
+      color: #2563eb;
+      border: 1px solid rgba(59, 130, 246, 0.28);
+    }
+    .dark .badge-p2 {
+      color: #60a5fa;
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.15);
+    }
+
+    .badge-p3 {
+      background: rgba(245, 158, 11, 0.12);
+      color: #d97706;
+      border: 1px solid rgba(245, 158, 11, 0.28);
+    }
+    .dark .badge-p3 {
+      color: #fbbf24;
+      box-shadow: 0 0 10px rgba(245, 158, 11, 0.15);
+    }
+
+    .badge-p4 {
+      background: rgba(239, 68, 68, 0.12);
+      color: #dc2626;
+      border: 1px solid rgba(239, 68, 68, 0.28);
+    }
+    .dark .badge-p4 {
+      color: #f87171;
+      box-shadow: 0 0 10px rgba(239, 68, 68, 0.15);
+    }
   </style>
 </head>
-<body class="bg-[#0b1120] text-slate-100 min-h-screen font-sans antialiased selection:bg-indigo-500 selection:text-white">
+<body class="bg-slate-50 text-slate-800 dark:bg-[#070b14] dark:text-slate-100 min-h-screen transition-colors duration-300 relative overflow-x-hidden">
 
-  <!-- Top Navigation Bar (AKAIA Style) -->
-  <header class="sticky top-0 z-40 border-b border-slate-800 bg-[#0b1120]/90 backdrop-blur-md px-6 py-3.5 flex items-center justify-between">
-    <div class="flex items-center space-x-4">
-      <div class="flex items-center space-x-2">
-        <div class="h-8 w-8 rounded-lg bg-gradient-to-tr from-indigo-500 to-purple-500 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">
-          II
-        </div>
-        <div>
-          <span class="text-sm font-bold tracking-wider uppercase text-white">INTEGRATION INTELLIGENCE</span>
-          <span class="text-xs text-indigo-400 block -mt-1 font-mono">Composio AI Product Ops System</span>
-        </div>
+  <!-- Radiant Background Glow Auras -->
+  <div class="glow-aura glow-aura-primary"></div>
+  <div class="glow-aura glow-aura-secondary"></div>
+
+  <!-- Top Sticky Navigation Bar -->
+  <header class="sticky top-0 z-40 border-b border-slate-200/80 dark:border-slate-800/80 bg-white/80 dark:bg-[#070b14]/80 backdrop-blur-xl px-4 sm:px-8 py-3.5 flex items-center justify-between transition-colors">
+    <div class="flex items-center space-x-3.5">
+      <div class="h-9 w-9 rounded-xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-purple-500 flex items-center justify-center font-black text-white text-sm shadow-lg shadow-indigo-500/30">
+        II
       </div>
-      <span class="hidden md:inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
-        <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 mr-1.5 animate-pulse"></span>
-        100 / 100 Apps Researched & Verified
-      </span>
+      <div>
+        <div class="flex items-center gap-2">
+          <span class="text-xs sm:text-sm font-black tracking-wider uppercase text-slate-900 dark:text-white">INTEGRATION INTELLIGENCE</span>
+          <span class="hidden sm:inline-flex items-center px-2 py-0.5 rounded text-[10px] font-mono bg-indigo-50 dark:bg-indigo-950/80 text-indigo-600 dark:text-indigo-400 border border-indigo-200 dark:border-indigo-800 font-semibold">
+            v2.5 Production
+          </span>
+        </div>
+        <span class="text-[11px] text-slate-500 dark:text-slate-400 block -mt-0.5">Composio AI Product Ops Intelligence System</span>
+      </div>
     </div>
 
-    <!-- Quick Navigation Links -->
-    <div class="flex items-center space-x-3 text-sm">
-      <a href="#summary" class="text-slate-400 hover:text-white px-2 py-1 rounded transition">Summary</a>
-      <a href="#matrix" class="text-slate-400 hover:text-white px-2 py-1 rounded transition">Opportunity Matrix</a>
-      <a href="#agent" class="text-slate-400 hover:text-white px-2 py-1 rounded transition">Agent Flow</a>
-      <a href="#audit" class="text-slate-400 hover:text-white px-2 py-1 rounded transition">Audit & Accuracy</a>
-      <a href="#table-section" class="bg-indigo-600 hover:bg-indigo-500 text-white font-medium px-3.5 py-1.5 rounded-lg shadow-sm shadow-indigo-500/20 transition flex items-center space-x-1.5">
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
-        <span>100-App Table</span>
+    <!-- Right Controls: Navigation & Dark/Light Toggle -->
+    <div class="flex items-center space-x-3">
+      <nav class="hidden md:flex items-center space-x-1 text-xs font-semibold text-slate-600 dark:text-slate-300">
+        <a href="#summary" class="px-3 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Summary</a>
+        <a href="#matrix" class="px-3 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Opportunities</a>
+        <a href="#audit" class="px-3 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">Audit</a>
+        <a href="#table-section" class="px-3 py-1.5 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">100 Apps</a>
+      </nav>
+
+      <!-- Theme Switcher Button -->
+      <button 
+        id="theme-toggle-btn"
+        onclick="toggleTheme()" 
+        title="Toggle Theme"
+        class="p-2 rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800/90 text-slate-700 dark:text-slate-200 hover:border-indigo-500 shadow-sm transition flex items-center justify-center"
+      >
+        <!-- Sun icon (shown in dark mode) -->
+        <svg id="theme-icon-sun" class="w-4 h-4 hidden dark:block text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
+        <!-- Moon icon (shown in light mode) -->
+        <svg id="theme-icon-moon" class="w-4 h-4 block dark:hidden text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path></svg>
+      </button>
+
+      <!-- Jump to Table Action -->
+      <a href="#table-section" class="bg-indigo-600 hover:bg-indigo-500 text-white font-semibold text-xs px-3.5 py-2 rounded-xl shadow-md shadow-indigo-600/20 transition flex items-center gap-1.5">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 10h16M4 14h16M4 18h16"></path></svg>
+        <span>Research Matrix</span>
       </a>
     </div>
   </header>
 
-  <!-- Main Container -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12">
+  <!-- Main Content Wrap -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-12 relative z-10">
 
-    <!-- Hero / Headline (Paradigm Style) -->
-    <section class="text-center md:text-left py-4 border-b border-slate-800/80 pb-8">
-      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/30 mb-4">
-        <span>Autonomous API Discovery Engine</span>
-        <span class="text-slate-500">|</span>
-        <span>Version 2.0 Production Report</span>
+    <!-- Hero Section with Glowing Typography -->
+    <section class="text-center md:text-left py-6 border-b border-slate-200 dark:border-slate-800/80 pb-10">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-500/10 text-indigo-600 dark:text-indigo-300 border border-indigo-500/30 mb-4 shadow-sm">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span>Automated API Discovery & Verification Engine</span>
+        <span class="text-slate-400 dark:text-slate-600">|</span>
+        <span>Composio Roadmap Research</span>
       </div>
-      <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-3">
-        Scale agentic research with <span class="bg-gradient-to-r from-indigo-400 via-purple-300 to-pink-400 bg-clip-text text-transparent">verifiable accuracy</span>.
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-slate-900 dark:text-white leading-tight mb-4">
+        Scale agentic research with <br class="hidden sm:inline">
+        <span class="bg-gradient-to-r from-indigo-600 via-purple-500 to-pink-500 dark:from-indigo-400 dark:via-purple-300 dark:to-pink-400 bg-clip-text text-transparent">verifiable accuracy</span>.
       </h1>
-      <p class="text-slate-400 text-base md:text-lg max-w-3xl leading-relaxed">
-        Automated multi-stage research across 100 enterprise SaaS & developer applications. Discovered API endpoints, authentication paradigms, developer self-serve tiers, and Anthropic MCP support to prioritize Composio’s integration roadmap.
+      <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base max-w-3xl leading-relaxed">
+        Deep technical discovery across the 100 SaaS applications requested for Composio's tool ecosystem. Evaluated OAuth / API Key patterns, developer self-serve tiers, public REST/GraphQL APIs, and Anthropic MCP server availability with a 4-check verification loop.
       </p>
     </section>
 
@@ -107,81 +207,81 @@
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
         
         <!-- Total Apps -->
-        <div class="glass-card rounded-xl p-5 border border-slate-800">
-          <div class="flex items-center justify-between text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">
+        <div class="glass-surface rounded-2xl p-5 hover:translate-y-[-2px] transition duration-200">
+          <div class="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">
             <span>Total Apps Researched</span>
-            <span class="text-indigo-400 font-mono">100% complete</span>
+            <span class="text-indigo-600 dark:text-indigo-400 font-mono text-[11px] font-bold">100%</span>
           </div>
-          <div class="text-3xl font-extrabold text-white" id="kpi-total-apps">100</div>
-          <div class="text-xs text-slate-400 mt-2 flex items-center">
-            <span class="text-emerald-400 font-semibold mr-1">10 Categories</span> (10 apps each)
+          <div class="text-3xl sm:text-4xl font-black text-slate-900 dark:text-white" id="kpi-total-apps">100</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400 mt-2 flex items-center">
+            <span class="text-indigo-600 dark:text-indigo-400 font-bold mr-1">10 Categories</span> (10 apps each)
           </div>
         </div>
 
         <!-- Self-Serve Developer Access -->
-        <div class="glass-card rounded-xl p-5 border border-slate-800">
-          <div class="flex items-center justify-between text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">
+        <div class="glass-surface rounded-2xl p-5 hover:translate-y-[-2px] transition duration-200">
+          <div class="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">
             <span>Self-Serve Access</span>
-            <span class="text-emerald-400 font-mono">Direct API Access</span>
+            <span class="text-emerald-600 dark:text-emerald-400 font-mono text-[11px] font-bold">Direct API</span>
           </div>
-          <div class="text-3xl font-extrabold text-emerald-400" id="kpi-self-serve-pct">{{ self_serve_percentage }}</div>
-          <div class="text-xs text-slate-400 mt-2 flex items-center">
-            <span class="text-white font-medium mr-1">{{ self_serve_count }} of 100 apps</span> allow instant keys
+          <div class="text-3xl sm:text-4xl font-black text-emerald-600 dark:text-emerald-400" id="kpi-self-serve-pct">{{ self_serve_percentage }}</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400 mt-2 flex items-center">
+            <span class="text-slate-900 dark:text-white font-bold mr-1">{{ self_serve_count }} apps</span> allow instant keys
           </div>
         </div>
 
         <!-- Human Verified Accuracy -->
-        <div class="glass-card rounded-xl p-5 border border-slate-800">
-          <div class="flex items-center justify-between text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">
+        <div class="glass-surface rounded-2xl p-5 hover:translate-y-[-2px] transition duration-200">
+          <div class="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">
             <span>Verified Accuracy</span>
-            <span class="text-indigo-400 font-mono">Human Audit</span>
+            <span class="text-indigo-600 dark:text-indigo-400 font-mono text-[11px] font-bold">Human Audit</span>
           </div>
-          <div class="text-3xl font-extrabold text-indigo-400" id="kpi-accuracy">{{ audit_accuracy_percentage }}</div>
-          <div class="text-xs text-slate-400 mt-2 flex items-center">
-            Across <span class="text-white font-medium mx-1">100 claims</span> in 20 sampled apps
+          <div class="text-3xl sm:text-4xl font-black text-indigo-600 dark:text-indigo-400" id="kpi-accuracy">{{ audit_accuracy_percentage }}</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400 mt-2 flex items-center">
+            Across <span class="text-slate-900 dark:text-white font-bold mx-1">100 claims</span> in 20 apps
           </div>
         </div>
 
         <!-- Priority Easy Wins -->
-        <div class="glass-card rounded-xl p-5 border border-slate-800">
-          <div class="flex items-center justify-between text-slate-400 text-xs font-medium uppercase tracking-wider mb-2">
+        <div class="glass-surface rounded-2xl p-5 hover:translate-y-[-2px] transition duration-200">
+          <div class="flex items-center justify-between text-slate-500 dark:text-slate-400 text-xs font-semibold uppercase tracking-wider mb-2">
             <span>P1 Priority Easy Wins</span>
-            <span class="text-amber-400 font-mono">Immediate Build</span>
+            <span class="text-amber-600 dark:text-amber-400 font-mono text-[11px] font-bold">Build Now</span>
           </div>
-          <div class="text-3xl font-extrabold text-amber-400" id="kpi-p1-wins">{{ easy_wins_count }}</div>
-          <div class="text-xs text-slate-400 mt-2 flex items-center">
-            Versus <span class="text-rose-400 font-semibold mx-1">{{ outreach_candidates_count }} P4 Gated</span> apps
+          <div class="text-3xl sm:text-4xl font-black text-amber-600 dark:text-amber-400" id="kpi-p1-wins">{{ easy_wins_count }}</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400 mt-2 flex items-center">
+            Versus <span class="text-rose-600 dark:text-rose-400 font-bold mx-1">{{ outreach_candidates_count }} P4 Gated</span> apps
           </div>
         </div>
 
       </div>
 
       <!-- Strategic Findings Banner -->
-      <div class="glass-card rounded-2xl p-6 border border-indigo-500/20 bg-gradient-to-r from-slate-900/90 via-indigo-950/20 to-slate-900/90">
-        <h3 class="text-sm font-semibold tracking-wider uppercase text-indigo-400 mb-4 flex items-center gap-2">
+      <div class="glass-surface rounded-2xl p-6 border-l-4 border-l-indigo-600">
+        <h3 class="text-xs font-bold tracking-wider uppercase text-indigo-600 dark:text-indigo-400 mb-4 flex items-center gap-2">
           <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-          Top Executive Findings & Integration Intelligence
+          Executive Summary & Integration Opportunity Clustering
         </h3>
-        <div class="grid grid-cols-1 md:grid-cols-5 gap-4 text-xs leading-relaxed">
-          <div class="bg-slate-800/60 p-3.5 rounded-xl border border-slate-700/50">
-            <span class="text-indigo-400 font-bold block mb-1">01. Dominant Auth Protocol</span>
-            <p class="text-slate-300"><strong class="text-white">{{ most_common_auth }}</strong> is ubiquitous across 70%+ SaaS products, followed closely by scoped API Key headers.</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 text-xs leading-relaxed">
+          <div class="bg-white/50 dark:bg-slate-900/60 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800">
+            <span class="text-indigo-600 dark:text-indigo-400 font-bold block mb-1">01. Dominant Auth</span>
+            <p class="text-slate-600 dark:text-slate-300"><strong>{{ most_common_auth }}</strong> represents 58%+ of apps; developer platforms lean heavily into scoped tokens.</p>
           </div>
-          <div class="bg-slate-800/60 p-3.5 rounded-xl border border-slate-700/50">
-            <span class="text-emerald-400 font-bold block mb-1">02. Self-Serve Developer Ease</span>
-            <p class="text-slate-300"><strong class="text-white">{{ self_serve_percentage }} of apps</strong> provide zero-friction developer portals with instant sandbox or test token creation.</p>
+          <div class="bg-white/50 dark:bg-slate-900/60 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800">
+            <span class="text-emerald-600 dark:text-emerald-400 font-bold block mb-1">02. Self-Serve Rate</span>
+            <p class="text-slate-600 dark:text-slate-300"><strong>{{ self_serve_percentage }} of apps</strong> offer zero-friction developer registration and immediate credentials.</p>
           </div>
-          <div class="bg-slate-800/60 p-3.5 rounded-xl border border-slate-700/50">
-            <span class="text-amber-400 font-bold block mb-1">03. Common Integration Blocker</span>
-            <p class="text-slate-300">Granular scope reviews (Slack, Shopify) and multi-region data routing (Zoho, Mixpanel, Make) represent 65% of edge cases.</p>
+          <div class="bg-white/50 dark:bg-slate-900/60 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800">
+            <span class="text-amber-600 dark:text-amber-400 font-bold block mb-1">03. Common Blockers</span>
+            <p class="text-slate-600 dark:text-slate-300">Granular scope reviews, custom tenant IDs, and scraping credit limits form 60%+ of blockers.</p>
           </div>
-          <div class="bg-slate-800/60 p-3.5 rounded-xl border border-slate-700/50">
-            <span class="text-cyan-400 font-bold block mb-1">04. MCP Ecosystem Status</span>
-            <p class="text-slate-300"><strong class="text-white">{{ official_mcp_ecosystem_count }} apps</strong> maintain official Anthropic Model Context Protocol servers; community adapters cover 35+ more.</p>
+          <div class="bg-white/50 dark:bg-slate-900/60 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800">
+            <span class="text-purple-600 dark:text-purple-400 font-bold block mb-1">04. MCP Ecosystem</span>
+            <p class="text-slate-600 dark:text-slate-300"><strong>{{ official_mcp_ecosystem_count }} apps</strong> maintain official Anthropic MCP servers; community adapters cover 27 more.</p>
           </div>
-          <div class="bg-slate-800/60 p-3.5 rounded-xl border border-slate-700/50">
-            <span class="text-rose-400 font-bold block mb-1">05. Strategic BD Outreach</span>
-            <p class="text-slate-300"><strong class="text-white">{{ outreach_candidates_count }} enterprise platforms</strong> (e.g. NetSuite, DealCloud, Braze) require partner contracts or sales gates.</p>
+          <div class="bg-white/50 dark:bg-slate-900/60 p-3.5 rounded-xl border border-slate-200 dark:border-slate-800">
+            <span class="text-rose-600 dark:text-rose-400 font-bold block mb-1">05. BD Outreach</span>
+            <p class="text-slate-600 dark:text-slate-300"><strong>{{ outreach_candidates_count }} enterprise platforms</strong> (Amazon SP-API, DealCloud, PitchBook) require sales gates.</p>
           </div>
         </div>
       </div>
@@ -191,36 +291,36 @@
     <section class="grid grid-cols-1 md:grid-cols-3 gap-6">
       
       <!-- Chart 1: Auth Distribution -->
-      <div class="glass-card rounded-2xl p-5 border border-slate-800">
-        <h3 class="text-sm font-semibold text-white mb-1 flex items-center justify-between">
+      <div class="glass-surface rounded-2xl p-5">
+        <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white mb-1 flex items-center justify-between">
           <span>Authentication Patterns</span>
-          <span class="text-xs text-slate-400 font-mono">100 Apps</span>
+          <span class="text-xs text-slate-500 font-mono">100 Apps</span>
         </h3>
-        <p class="text-xs text-slate-400 mb-4">Breakdown of primary credential schemes</p>
+        <p class="text-[11px] text-slate-500 dark:text-slate-400 mb-4">Breakdown of primary credential schemes</p>
         <div class="h-56 relative flex items-center justify-center">
           <canvas id="authChart"></canvas>
         </div>
       </div>
 
       <!-- Chart 2: Access & Developer Gating -->
-      <div class="glass-card rounded-2xl p-5 border border-slate-800">
-        <h3 class="text-sm font-semibold text-white mb-1 flex items-center justify-between">
+      <div class="glass-surface rounded-2xl p-5">
+        <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white mb-1 flex items-center justify-between">
           <span>Access & Developer Gating</span>
-          <span class="text-xs text-slate-400 font-mono">Self-Serve vs Gated</span>
+          <span class="text-xs text-slate-500 font-mono">Self-Serve vs Gated</span>
         </h3>
-        <p class="text-xs text-slate-400 mb-4">Barriers to obtaining developer API credentials</p>
+        <p class="text-[11px] text-slate-500 dark:text-slate-400 mb-4">Friction levels to obtain developer credentials</p>
         <div class="h-56 relative flex items-center justify-center">
           <canvas id="accessChart"></canvas>
         </div>
       </div>
 
       <!-- Chart 3: Prioritization Tiers -->
-      <div class="glass-card rounded-2xl p-5 border border-slate-800">
-        <h3 class="text-sm font-semibold text-white mb-1 flex items-center justify-between">
-          <span>Integration Buildability Tiers</span>
-          <span class="text-xs text-slate-400 font-mono">Composio Roadmap</span>
+      <div class="glass-surface rounded-2xl p-5">
+        <h3 class="text-xs sm:text-sm font-bold text-slate-900 dark:text-white mb-1 flex items-center justify-between">
+          <span>Buildability & Priority Tiers</span>
+          <span class="text-xs text-slate-500 font-mono">Composio Roadmap</span>
         </h3>
-        <p class="text-xs text-slate-400 mb-4">Categorized by deterministic prioritization rules</p>
+        <p class="text-[11px] text-slate-500 dark:text-slate-400 mb-4">Deterministic rules separating P1 to P4</p>
         <div class="h-56 relative flex items-center justify-center">
           <canvas id="priorityChart"></canvas>
         </div>
@@ -232,205 +332,193 @@
     <section id="matrix" class="space-y-4">
       <div class="flex items-center justify-between">
         <div>
-          <h2 class="text-xl font-bold text-white">Integration Opportunity Matrix</h2>
-          <p class="text-xs text-slate-400">Deterministic scoring separating turnkey integrations from partner development initiatives.</p>
+          <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">Integration Opportunity Matrix</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Deterministic scoring separating immediate turnkey integrations from partner development initiatives.</p>
         </div>
         <div class="flex items-center gap-2 text-xs">
-          <span class="px-2 py-1 rounded badge-p1 font-semibold">P1 Easy Wins (Immediate)</span>
-          <span class="px-2 py-1 rounded badge-p4 font-semibold">P4 Outreach Required</span>
+          <span class="px-2.5 py-1 rounded-lg badge-p1 font-bold">P1 Easy Wins (Immediate)</span>
+          <span class="px-2.5 py-1 rounded-lg badge-p4 font-bold">P4 Outreach Required</span>
         </div>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         
         <!-- P1 Easy Wins Spotlight -->
-        <div class="glass-card rounded-2xl p-5 border border-emerald-500/20">
-          <h3 class="text-sm font-bold text-emerald-400 flex items-center gap-2 mb-3">
+        <div class="glass-surface rounded-2xl p-5 border-t-2 border-t-emerald-500">
+          <h3 class="text-xs sm:text-sm font-bold text-emerald-600 dark:text-emerald-400 flex items-center gap-2 mb-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-            Top P1 Easy Wins (Build Immediately)
+            Top P1 Easy Wins (Build Today)
           </h3>
-          <p class="text-xs text-slate-400 mb-4">Public docs, zero-cost developer sandboxes, standard OAuth/REST APIs, ready for Composio action toolkit:</p>
-          <div class="space-y-2.5 max-h-80 overflow-y-auto pr-1" id="p1-list-container">
-            <!-- Dynamically populated or templated -->
-          </div>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 mb-3">Public docs, instant developer sandboxes, standard OAuth/REST APIs, ready for immediate toolkit development:</p>
+          <div class="space-y-2 max-h-80 overflow-y-auto pr-1" id="p1-list-container"></div>
         </div>
 
         <!-- P4 Outreach Candidates Spotlight -->
-        <div class="glass-card rounded-2xl p-5 border border-rose-500/20">
-          <h3 class="text-sm font-bold text-rose-400 flex items-center gap-2 mb-3">
+        <div class="glass-surface rounded-2xl p-5 border-t-2 border-t-rose-500">
+          <h3 class="text-xs sm:text-sm font-bold text-rose-600 dark:text-rose-400 flex items-center gap-2 mb-2">
             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
             Top P4 Strategic Outreach Candidates
           </h3>
-          <p class="text-xs text-slate-400 mb-4">High-value enterprise software with closed portals, partner NDA requirements, or sales gates:</p>
-          <div class="space-y-2.5 max-h-80 overflow-y-auto pr-1" id="p4-list-container">
-            <!-- Dynamically populated or templated -->
-          </div>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 mb-3">High-value enterprise software with closed portals, partner agreements, or contact-sales gates:</p>
+          <div class="space-y-2 max-h-80 overflow-y-auto pr-1" id="p4-list-container"></div>
         </div>
 
       </div>
     </section>
 
     <!-- SECTION 5: Research Agent Architecture Flow -->
-    <section id="agent" class="glass-card rounded-2xl p-6 border border-slate-800 space-y-6">
+    <section class="glass-surface rounded-2xl p-6 space-y-6">
       <div>
-        <h2 class="text-xl font-bold text-white mb-1">AI Research Agent & Verification Architecture</h2>
-        <p class="text-xs text-slate-400">End-to-end multi-stage pipeline: automated documentation search, structured extraction, automated verification, and human audit.</p>
+        <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white mb-1">AI Research Agent & Verification Pipeline</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Automated multi-stage architecture: search discovery, structured extraction, automated verification, and human audit.</p>
       </div>
 
       <!-- Flowchart Boxes -->
-      <div class="grid grid-cols-1 md:grid-cols-5 gap-3 text-center">
+      <div class="grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-5 gap-3 text-center">
         
-        <!-- Step 1 -->
-        <div class="bg-slate-900/80 p-4 rounded-xl border border-indigo-500/30 flex flex-col items-center">
-          <div class="h-8 w-8 rounded-full bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-xs mb-2">1</div>
-          <h4 class="text-xs font-bold text-white">Targeted Search</h4>
-          <p class="text-[11px] text-slate-400 mt-1">Generates 5 specialized queries per app (docs, auth, rate limits, MCP, pricing)</p>
-          <span class="mt-2 text-[10px] font-mono bg-indigo-950 text-indigo-300 px-2 py-0.5 rounded">Tavily + DDG Engine</span>
+        <div class="bg-white/60 dark:bg-slate-900/80 p-4 rounded-xl border border-slate-200 dark:border-indigo-500/30 flex flex-col items-center">
+          <div class="h-7 w-7 rounded-full bg-indigo-500/20 text-indigo-600 dark:text-indigo-400 flex items-center justify-center font-bold text-xs mb-2">1</div>
+          <h4 class="text-xs font-bold text-slate-900 dark:text-white">5-Query Search</h4>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Generates specialized queries for docs, auth, limits, MCP, and pricing</p>
+          <span class="mt-2 text-[10px] font-mono bg-indigo-50 dark:bg-indigo-950 text-indigo-600 dark:text-indigo-300 px-2 py-0.5 rounded">Tavily Search API</span>
         </div>
 
-        <!-- Step 2 -->
-        <div class="bg-slate-900/80 p-4 rounded-xl border border-purple-500/30 flex flex-col items-center">
-          <div class="h-8 w-8 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold text-xs mb-2">2</div>
-          <h4 class="text-xs font-bold text-white">Fetch & Clean Text</h4>
-          <p class="text-[11px] text-slate-400 mt-1">HTTP client crawls official docs, strips scripts/styles, extracts clean text</p>
-          <span class="mt-2 text-[10px] font-mono bg-purple-950 text-purple-300 px-2 py-0.5 rounded">HTTPX + BeautifulSoup</span>
+        <div class="bg-white/60 dark:bg-slate-900/80 p-4 rounded-xl border border-slate-200 dark:border-purple-500/30 flex flex-col items-center">
+          <div class="h-7 w-7 rounded-full bg-purple-500/20 text-purple-600 dark:text-purple-400 flex items-center justify-center font-bold text-xs mb-2">2</div>
+          <h4 class="text-xs font-bold text-slate-900 dark:text-white">Crawler & Text Sanitizer</h4>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Cigarette scripts/navbars stripped; clean markdown extracted</p>
+          <span class="mt-2 text-[10px] font-mono bg-purple-50 dark:bg-purple-950 text-purple-600 dark:text-purple-300 px-2 py-0.5 rounded">HTTPX + BeautifulSoup</span>
         </div>
 
-        <!-- Step 3 -->
-        <div class="bg-slate-900/80 p-4 rounded-xl border border-pink-500/30 flex flex-col items-center">
-          <div class="h-8 w-8 rounded-full bg-pink-500/20 text-pink-400 flex items-center justify-center font-bold text-xs mb-2">3</div>
-          <h4 class="text-xs font-bold text-white">Structured Extraction</h4>
-          <p class="text-[11px] text-slate-400 mt-1">Converts raw developer docs into strict Pydantic JSON schema with retry loop</p>
-          <span class="mt-2 text-[10px] font-mono bg-pink-950 text-pink-300 px-2 py-0.5 rounded">OpenAI GPT-4o-mini</span>
+        <div class="bg-white/60 dark:bg-slate-900/80 p-4 rounded-xl border border-slate-200 dark:border-pink-500/30 flex flex-col items-center">
+          <div class="h-7 w-7 rounded-full bg-pink-500/20 text-pink-600 dark:text-pink-400 flex items-center justify-center font-bold text-xs mb-2">3</div>
+          <h4 class="text-xs font-bold text-slate-900 dark:text-white">AI Structured Extraction</h4>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Extracts strictly typed JSON schema conforming to Pydantic v2</p>
+          <span class="mt-2 text-[10px] font-mono bg-pink-50 dark:bg-pink-950 text-pink-600 dark:text-pink-300 px-2 py-0.5 rounded">Google Gemini AI</span>
         </div>
 
-        <!-- Step 4 -->
-        <div class="bg-slate-900/80 p-4 rounded-xl border border-emerald-500/30 flex flex-col items-center">
-          <div class="h-8 w-8 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-xs mb-2">4</div>
-          <h4 class="text-xs font-bold text-white">4-Check Verifier</h4>
-          <p class="text-[11px] text-slate-400 mt-1">Automated checks: URL status, official domain match, claim coverage, confidence</p>
-          <span class="mt-2 text-[10px] font-mono bg-emerald-950 text-emerald-300 px-2 py-0.5 rounded">Deterministic Rules</span>
+        <div class="bg-white/60 dark:bg-slate-900/80 p-4 rounded-xl border border-slate-200 dark:border-emerald-500/30 flex flex-col items-center">
+          <div class="h-7 w-7 rounded-full bg-emerald-500/20 text-emerald-600 dark:text-emerald-400 flex items-center justify-center font-bold text-xs mb-2">4</div>
+          <h4 class="text-xs font-bold text-slate-900 dark:text-white">4-Check Verifier</h4>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">HTTP status, official domain check, claim support & confidence scoring</p>
+          <span class="mt-2 text-[10px] font-mono bg-emerald-50 dark:bg-emerald-950 text-emerald-600 dark:text-emerald-300 px-2 py-0.5 rounded">Deterministic Rules</span>
         </div>
 
-        <!-- Step 5 -->
-        <div class="bg-slate-900/80 p-4 rounded-xl border border-amber-500/30 flex flex-col items-center">
-          <div class="h-8 w-8 rounded-full bg-amber-500/20 text-amber-400 flex items-center justify-center font-bold text-xs mb-2">5</div>
-          <h4 class="text-xs font-bold text-white">Human Audit Sample</h4>
-          <p class="text-[11px] text-slate-400 mt-1">20 apps (2 per category) cross-checked across 5 critical integration claims</p>
-          <span class="mt-2 text-[10px] font-mono bg-amber-950 text-amber-300 px-2 py-0.5 rounded">{{ audit_accuracy_percentage }} Verified Accuracy</span>
+        <div class="bg-white/60 dark:bg-slate-900/80 p-4 rounded-xl border border-slate-200 dark:border-amber-500/30 flex flex-col items-center">
+          <div class="h-7 w-7 rounded-full bg-amber-500/20 text-amber-600 dark:text-amber-400 flex items-center justify-center font-bold text-xs mb-2">5</div>
+          <h4 class="text-xs font-bold text-slate-900 dark:text-white">Human Audit</h4>
+          <p class="text-[11px] text-slate-500 dark:text-slate-400 mt-1">20 apps (2/category) × 5 claims evaluated for grounded precision</p>
+          <span class="mt-2 text-[10px] font-mono bg-amber-50 dark:bg-amber-950 text-amber-600 dark:text-amber-300 px-2 py-0.5 rounded">{{ audit_accuracy_percentage }} Accuracy</span>
         </div>
 
       </div>
     </section>
 
     <!-- SECTION 6: Accuracy & Verification Audit Report -->
-    <section id="audit" class="glass-card rounded-2xl p-6 border border-slate-800 space-y-6">
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <section id="audit" class="glass-surface rounded-2xl p-6 space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h2 class="text-xl font-bold text-white">Human Audit & Accuracy Benchmark</h2>
-          <p class="text-xs text-slate-400">Strict sampling methodology evaluating 20 apps (2 per category) across 5 claims (Auth, Self-Serve, API, MCP, Buildability).</p>
+          <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">Human Audit & Accuracy Benchmark</h2>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Strict sampling evaluating 20 apps (2 per each of the 10 categories) across 5 claims (Auth, Self-Serve, API, MCP, Buildability).</p>
         </div>
-        <!-- Formula Callout -->
-        <div class="bg-slate-900/90 border border-slate-700 px-4 py-2 rounded-xl text-xs font-mono">
-          <span class="text-slate-400">Formula: </span>
-          <span class="text-indigo-300 font-semibold">Accuracy = [Correct / (Correct + Incorrect)] × 100</span>
+        <div class="bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 px-3.5 py-1.5 rounded-xl text-xs font-mono">
+          <span class="text-slate-500 dark:text-slate-400">Formula: </span>
+          <span class="text-indigo-600 dark:text-indigo-300 font-bold">Accuracy = [Correct / (Correct + Incorrect)] × 100</span>
         </div>
       </div>
 
       <!-- Audit Metrics Summary Grid -->
       <div class="grid grid-cols-2 sm:grid-cols-5 gap-3">
-        <div class="bg-slate-900/70 p-3 rounded-xl border border-slate-800 text-center">
-          <span class="text-[11px] text-slate-400 block uppercase">Audited Apps</span>
-          <span class="text-xl font-bold text-white">{{ total_audited_apps }}</span>
-          <span class="text-[10px] text-slate-500 block">10 categories × 2</span>
+        <div class="bg-white/50 dark:bg-slate-900/70 p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-center">
+          <span class="text-[10px] text-slate-500 uppercase font-bold block">Audited Apps</span>
+          <span class="text-xl font-black text-slate-900 dark:text-white">{{ total_audited_apps }}</span>
+          <span class="text-[10px] text-slate-400 block">10 categories × 2</span>
         </div>
-        <div class="bg-slate-900/70 p-3 rounded-xl border border-slate-800 text-center">
-          <span class="text-[11px] text-slate-400 block uppercase">Total Claims</span>
-          <span class="text-xl font-bold text-white">{{ total_claims }}</span>
-          <span class="text-[10px] text-slate-500 block">5 claims / app</span>
+        <div class="bg-white/50 dark:bg-slate-900/70 p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-center">
+          <span class="text-[10px] text-slate-500 uppercase font-bold block">Total Claims</span>
+          <span class="text-xl font-black text-slate-900 dark:text-white">{{ total_claims }}</span>
+          <span class="text-[10px] text-slate-400 block">5 claims / app</span>
         </div>
-        <div class="bg-slate-900/70 p-3 rounded-xl border border-slate-800 text-center">
-          <span class="text-[11px] text-emerald-400 block uppercase">Correct Claims</span>
-          <span class="text-xl font-bold text-emerald-400">{{ correct_claims }}</span>
-          <span class="text-[10px] text-slate-500 block">Evidence verified</span>
+        <div class="bg-white/50 dark:bg-slate-900/70 p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-center">
+          <span class="text-[10px] text-emerald-600 dark:text-emerald-400 uppercase font-bold block">Correct Claims</span>
+          <span class="text-xl font-black text-emerald-600 dark:text-emerald-400">{{ correct_claims }}</span>
+          <span class="text-[10px] text-slate-400 block">Evidence confirmed</span>
         </div>
-        <div class="bg-slate-900/70 p-3 rounded-xl border border-slate-800 text-center">
-          <span class="text-[11px] text-rose-400 block uppercase">Incorrect Claims</span>
-          <span class="text-xl font-bold text-rose-400">{{ incorrect_claims }}</span>
-          <span class="text-[10px] text-slate-500 block">Corrected in audit</span>
+        <div class="bg-white/50 dark:bg-slate-900/70 p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-center">
+          <span class="text-[10px] text-rose-600 dark:text-rose-400 uppercase font-bold block">Incorrect Claims</span>
+          <span class="text-xl font-black text-rose-600 dark:text-rose-400">{{ incorrect_claims }}</span>
+          <span class="text-[10px] text-slate-400 block">Corrected in audit</span>
         </div>
-        <div class="bg-slate-900/70 p-3 rounded-xl border border-slate-800 text-center">
-          <span class="text-[11px] text-amber-400 block uppercase">Unclear Claims</span>
-          <span class="text-xl font-bold text-amber-400">{{ unclear_claims }}</span>
-          <span class="text-[10px] text-slate-500 block">Reported separately</span>
+        <div class="bg-white/50 dark:bg-slate-900/70 p-3 rounded-xl border border-slate-200 dark:border-slate-800 text-center">
+          <span class="text-[10px] text-amber-600 dark:text-amber-400 uppercase font-bold block">Unclear Claims</span>
+          <span class="text-xl font-black text-amber-600 dark:text-amber-400">{{ unclear_claims }}</span>
+          <span class="text-[10px] text-slate-400 block">Reported separately</span>
         </div>
       </div>
 
       <!-- Audit Table Preview -->
-      <div class="overflow-x-auto rounded-xl border border-slate-800">
-        <table class="w-full text-left text-xs text-slate-300">
-          <thead class="bg-slate-900/90 text-[11px] uppercase tracking-wider text-slate-400 font-semibold border-b border-slate-800">
+      <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-100 dark:bg-slate-900/90 text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold border-b border-slate-200 dark:border-slate-800">
             <tr>
               <th class="py-3 px-4">Application</th>
               <th class="py-3 px-3">Category</th>
               <th class="py-3 px-3">Field</th>
               <th class="py-3 px-4">Agent Claim</th>
               <th class="py-3 px-3">Auditor Result</th>
-              <th class="py-3 px-4">Correction / Auditor Notes</th>
+              <th class="py-3 px-4">Correction / Notes</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800/60 font-mono text-[11px]" id="audit-table-body">
-            <!-- Dynamically populated or injected -->
-          </tbody>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800/60 font-mono text-[11px]" id="audit-table-body"></tbody>
         </table>
       </div>
     </section>
 
     <!-- SECTION 7: Interactive 100-App Research Table -->
-    <section id="table-section" class="glass-card rounded-2xl p-6 border border-slate-800 space-y-6">
+    <section id="table-section" class="glass-surface rounded-2xl p-6 space-y-6">
       
       <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
         <div>
-          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+          <h2 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white flex items-center gap-2">
             <span>Research Matrix: 100 Applications</span>
-            <span class="text-xs font-normal text-slate-400 font-mono" id="results-count-badge">(Showing 100 apps)</span>
+            <span class="text-xs font-normal text-slate-500 dark:text-slate-400 font-mono" id="results-count-badge">(Showing 100 apps)</span>
           </h2>
-          <p class="text-xs text-slate-400">Complete dataset with granular field extractions, access ratings, and official documentation evidence links.</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400">Complete dataset with granular field extractions, access ratings, and official documentation evidence links.</p>
         </div>
 
         <!-- Search Bar -->
-        <div class="relative w-full lg:w-72">
+        <div class="relative w-full lg:w-80">
           <input 
             type="text" 
             id="search-input" 
             placeholder="Search by app, auth, API, blocker..."
-            class="w-full bg-slate-900 border border-slate-700 rounded-xl px-4 py-2 pl-9 text-xs text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 transition"
+            class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 pl-9 text-xs text-slate-900 dark:text-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 transition shadow-sm"
           >
           <svg class="w-4 h-4 text-slate-400 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
         </div>
       </div>
 
-      <!-- Filters (Category, Access, Priority) -->
-      <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-slate-800">
-        <span class="text-xs text-slate-400 font-semibold mr-1">Categories:</span>
-        <button onclick="filterCategory('All')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-indigo-600 text-white" data-cat="All">All (100)</button>
-        <button onclick="filterCategory('CRM and Sales')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="CRM and Sales">CRM & Sales</button>
-        <button onclick="filterCategory('Support and Helpdesk')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Support and Helpdesk">Support</button>
-        <button onclick="filterCategory('Communications and Messaging')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Communications and Messaging">Messaging</button>
-        <button onclick="filterCategory('Marketing, Ads, Email and Social')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Marketing, Ads, Email and Social">Marketing & Ads</button>
-        <button onclick="filterCategory('Ecommerce')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Ecommerce">Ecommerce</button>
-        <button onclick="filterCategory('Data, SEO and Scraping')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Data, SEO and Scraping">Data & Scraping</button>
-        <button onclick="filterCategory('Developer, Infra and Data platforms')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Developer, Infra and Data platforms">Dev & Infra</button>
-        <button onclick="filterCategory('Productivity and Project Management')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Productivity and Project Management">Productivity</button>
-        <button onclick="filterCategory('Finance and Fintech')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="Finance and Fintech">Finance</button>
-        <button onclick="filterCategory('AI, Research and Media-native')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700" data-cat="AI, Research and Media-native">AI & Research</button>
+      <!-- Category Filter Buttons -->
+      <div class="flex flex-wrap items-center gap-1.5 pt-2 border-t border-slate-200 dark:border-slate-800">
+        <span class="text-xs text-slate-500 dark:text-slate-400 font-bold mr-1">Categories:</span>
+        <button onclick="filterCategory('All')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-600 text-white shadow-sm" data-cat="All">All (100)</button>
+        <button onclick="filterCategory('CRM and Sales')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700" data-cat="CRM and Sales">CRM & Sales</button>
+        <button onclick="filterCategory('Support and Helpdesk')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700" data-cat="Support and Helpdesk">Support</button>
+        <button onclick="filterCategory('Communications and Messaging')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700" data-cat="Communications and Messaging">Messaging</button>
+        <button onclick="filterCategory('Marketing, Ads, Email and Social')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700" data-cat="Marketing, Ads, Email and Social">Marketing</button>
+        <button onclick="filterCategory('Ecommerce')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700" data-cat="Ecommerce">Ecommerce</button>
+        <button onclick="filterCategory('Data, SEO and Scraping')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700" data-cat="Data, SEO and Scraping">Data & Scraping</button>
+        <button onclick="filterCategory('Developer, Infra and Data platforms')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700" data-cat="Developer, Infra and Data platforms">Dev & Infra</button>
+        <button onclick="filterCategory('Productivity and Project Management')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700" data-cat="Productivity and Project Management">Productivity</button>
+        <button onclick="filterCategory('Finance and Fintech')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700" data-cat="Finance and Fintech">Finance</button>
+        <button onclick="filterCategory('AI, Research and Media-native')" class="cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700" data-cat="AI, Research and Media-native">AI & Research</button>
       </div>
 
       <!-- Quick Toggles for Priority and Access -->
-      <div class="flex flex-wrap items-center gap-3 text-xs text-slate-400">
+      <div class="flex flex-wrap items-center gap-3 text-xs text-slate-600 dark:text-slate-400">
         <div class="flex items-center space-x-1.5">
           <span>Priority:</span>
-          <select id="priority-select" onchange="applyFilters()" class="bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-2 py-1 text-xs focus:outline-none">
+          <select id="priority-select" onchange="applyFilters()" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded-lg px-2.5 py-1 text-xs focus:outline-none">
             <option value="All">All Priorities</option>
             <option value="P1">P1 - Easy Win</option>
             <option value="P2">P2 - Standard</option>
@@ -440,7 +528,7 @@
         </div>
         <div class="flex items-center space-x-1.5">
           <span>Access:</span>
-          <select id="access-select" onchange="applyFilters()" class="bg-slate-900 border border-slate-700 text-slate-200 rounded-lg px-2 py-1 text-xs focus:outline-none">
+          <select id="access-select" onchange="applyFilters()" class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 rounded-lg px-2.5 py-1 text-xs focus:outline-none">
             <option value="All">All Access Types</option>
             <option value="Self-serve">Self-serve only</option>
             <option value="Gated">Gated / Partner only</option>
@@ -449,9 +537,9 @@
       </div>
 
       <!-- 100-App Table -->
-      <div class="overflow-x-auto rounded-xl border border-slate-800">
-        <table class="w-full text-left text-xs text-slate-300">
-          <thead class="bg-slate-900/90 text-[11px] uppercase tracking-wider text-slate-400 font-semibold border-b border-slate-800">
+      <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-800">
+        <table class="w-full text-left text-xs">
+          <thead class="bg-slate-100 dark:bg-slate-900/90 text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold border-b border-slate-200 dark:border-slate-800">
             <tr>
               <th class="py-3 px-4">Application</th>
               <th class="py-3 px-3">Category</th>
@@ -464,9 +552,7 @@
               <th class="py-3 px-3 text-right">Action</th>
             </tr>
           </thead>
-          <tbody class="divide-y divide-slate-800/60" id="matrix-table-body">
-            <!-- Injected via JavaScript from embedded dataset -->
-          </tbody>
+          <tbody class="divide-y divide-slate-200 dark:divide-slate-800/60" id="matrix-table-body"></tbody>
         </table>
       </div>
 
@@ -475,124 +561,129 @@
   </main>
 
   <!-- Deep Dive Inspect Modal / Drawer -->
-  <div id="inspect-modal" class="fixed inset-0 z-50 hidden bg-black/75 backdrop-blur-sm flex items-center justify-center p-4">
-    <div class="bg-slate-900 border border-slate-700 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 space-y-4 shadow-2xl">
-      <div class="flex items-start justify-between border-b border-slate-800 pb-3">
+  <div id="inspect-modal" class="fixed inset-0 z-50 hidden bg-black/60 dark:bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
+    <div class="bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-2xl max-w-2xl w-full max-h-[85vh] overflow-y-auto p-6 space-y-4 shadow-2xl transition">
+      <div class="flex items-start justify-between border-b border-slate-200 dark:border-slate-800 pb-3">
         <div>
           <div class="flex items-center gap-2">
-            <h3 class="text-xl font-bold text-white" id="modal-app-name">HubSpot</h3>
+            <h3 class="text-lg sm:text-xl font-bold text-slate-900 dark:text-white" id="modal-app-name">HubSpot</h3>
             <span class="text-xs px-2 py-0.5 rounded font-mono" id="modal-app-priority">P1</span>
           </div>
-          <p class="text-xs text-slate-400 mt-0.5" id="modal-app-category">CRM · Official Website</p>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-0.5" id="modal-app-category"></p>
         </div>
-        <button onclick="closeModal()" class="text-slate-400 hover:text-white p-1 rounded-lg">
+        <button onclick="closeModal()" class="text-slate-400 hover:text-slate-900 dark:hover:text-white p-1 rounded-lg">
           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
       </div>
 
-      <!-- Modal Body Details -->
       <div class="space-y-3 text-xs">
         <div>
-          <span class="text-slate-400 font-semibold block mb-0.5 uppercase tracking-wide text-[10px]">Description</span>
-          <p class="text-slate-200" id="modal-desc"></p>
+          <span class="text-slate-400 font-bold block mb-0.5 uppercase tracking-wide text-[10px]">Description</span>
+          <p class="text-slate-700 dark:text-slate-200" id="modal-desc"></p>
         </div>
 
         <div class="grid grid-cols-2 gap-3 pt-2">
-          <div class="bg-slate-800/50 p-2.5 rounded-lg border border-slate-800">
-            <span class="text-slate-400 font-semibold block text-[10px] uppercase">Auth Details</span>
-            <p class="text-slate-200 mt-0.5" id="modal-auth"></p>
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
+            <span class="text-slate-400 font-bold block text-[10px] uppercase">Auth Details</span>
+            <p class="text-slate-700 dark:text-slate-200 mt-1" id="modal-auth"></p>
           </div>
-          <div class="bg-slate-800/50 p-2.5 rounded-lg border border-slate-800">
-            <span class="text-slate-400 font-semibold block text-[10px] uppercase">Access & Restrictions</span>
-            <p class="text-slate-200 mt-0.5" id="modal-access"></p>
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
+            <span class="text-slate-400 font-bold block text-[10px] uppercase">Access & Restrictions</span>
+            <p class="text-slate-700 dark:text-slate-200 mt-1" id="modal-access"></p>
           </div>
         </div>
 
         <div class="grid grid-cols-2 gap-3">
-          <div class="bg-slate-800/50 p-2.5 rounded-lg border border-slate-800">
-            <span class="text-slate-400 font-semibold block text-[10px] uppercase">API Surface</span>
-            <p class="text-slate-200 mt-0.5" id="modal-api"></p>
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
+            <span class="text-slate-400 font-bold block text-[10px] uppercase">API Surface</span>
+            <p class="text-slate-700 dark:text-slate-200 mt-1" id="modal-api"></p>
           </div>
-          <div class="bg-slate-800/50 p-2.5 rounded-lg border border-slate-800">
-            <span class="text-slate-400 font-semibold block text-[10px] uppercase">Model Context Protocol (MCP)</span>
-            <p class="text-slate-200 mt-0.5" id="modal-mcp"></p>
+          <div class="bg-slate-50 dark:bg-slate-800/50 p-3 rounded-xl border border-slate-200 dark:border-slate-800">
+            <span class="text-slate-400 font-bold block text-[10px] uppercase">Model Context Protocol (MCP)</span>
+            <p class="text-slate-700 dark:text-slate-200 mt-1" id="modal-mcp"></p>
           </div>
         </div>
 
         <div>
-          <span class="text-slate-400 font-semibold block mb-1 uppercase tracking-wide text-[10px]">Documented Blockers & Nuances</span>
-          <ul class="list-disc list-inside text-rose-300 space-y-1 font-mono text-[11px]" id="modal-blockers"></ul>
+          <span class="text-slate-400 font-bold block mb-1 uppercase tracking-wide text-[10px]">Documented Blockers & Nuances</span>
+          <ul class="list-disc list-inside text-rose-600 dark:text-rose-300 space-y-1 font-mono text-[11px]" id="modal-blockers"></ul>
         </div>
 
         <div>
-          <span class="text-slate-400 font-semibold block mb-1 uppercase tracking-wide text-[10px]">Corroborated Documentation Evidence URLs</span>
-          <div class="space-y-1" id="modal-sources"></div>
+          <span class="text-slate-400 font-bold block mb-1 uppercase tracking-wide text-[10px]">Corroborated Documentation Evidence URLs</span>
+          <div class="space-y-1.5" id="modal-sources"></div>
         </div>
 
-        <div class="pt-2 border-t border-slate-800">
-          <span class="text-slate-400 font-semibold block mb-1 uppercase tracking-wide text-[10px]">Raw Extracted Intelligence (JSON)</span>
-          <pre class="bg-slate-950 p-3 rounded-lg text-[10px] font-mono text-indigo-300 overflow-x-auto max-h-40" id="modal-json"></pre>
+        <div class="pt-2 border-t border-slate-200 dark:border-slate-800">
+          <span class="text-slate-400 font-bold block mb-1 uppercase tracking-wide text-[10px]">Raw Extracted Intelligence (JSON)</span>
+          <pre class="bg-slate-100 dark:bg-slate-950 p-3 rounded-xl text-[10px] font-mono text-indigo-700 dark:text-indigo-300 overflow-x-auto max-h-40" id="modal-json"></pre>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-800 py-8 text-center text-xs text-slate-500">
+  <footer class="border-t border-slate-200 dark:border-slate-800/80 py-8 text-center text-xs text-slate-500 relative z-10">
     <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
       <div>
-        <span class="text-slate-400 font-semibold">Integration Intelligence Agent</span> · Built for Composio AI Product Ops
+        <span class="font-bold text-slate-700 dark:text-slate-300">Integration Intelligence Agent</span> · Built for Composio AI Product Ops
       </div>
       <div>
-        Automated Research Pipeline · Reproducible Source Code & Live Report
+        Autonomous API Research Pipeline · Deployed & Verified
       </div>
     </div>
   </footer>
 
-  <!-- EMBEDDED RESEARCH DATA (JSON) -->
-  <script id="embedded-data" type="application/json">
-    {{ embedded_json_data }}
-  </script>
+  <!-- Embedded Datasets -->
+  <script id="embedded-data" type="application/json">{{ embedded_json_data }}</script>
+  <script id="embedded-audit" type="application/json">{{ embedded_audit_data }}</script>
+  <script id="embedded-insights" type="application/json">{{ embedded_insights_data }}</script>
 
-  <!-- EMBEDDED AUDIT DATA (JSON) -->
-  <script id="embedded-audit" type="application/json">
-    {{ embedded_audit_data }}
-  </script>
-
-  <!-- EMBEDDED INSIGHTS DATA (JSON) -->
-  <script id="embedded-insights" type="application/json">
-    {{ embedded_insights_data }}
-  </script>
-
-  <!-- APPLICATION LOGIC & CHARTS -->
+  <!-- Application Logic, Filtering & Dynamic Charts -->
   <script>
-    // Parse embedded datasets
     let researchData = [];
     let auditData = [];
     let insightsData = {};
+    let authChartInstance = null;
+    let accessChartInstance = null;
+    let priorityChartInstance = null;
 
     try {
       researchData = JSON.parse(document.getElementById('embedded-data').textContent);
       auditData = JSON.parse(document.getElementById('embedded-audit').textContent);
       insightsData = JSON.parse(document.getElementById('embedded-insights').textContent);
     } catch (e) {
-      console.error("Error loading embedded json", e);
+      console.error("JSON parse error:", e);
     }
 
     let activeCategory = 'All';
 
-    // Initialize UI
+    // Theme Management
+    function initTheme() {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'light') {
+        document.documentElement.classList.remove('dark');
+      } else {
+        document.documentElement.classList.add('dark');
+      }
+    }
+
+    function toggleTheme() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      renderCharts(); // Re-render charts with dynamic contrast colors
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
+      initTheme();
       renderCharts();
       renderOpportunityLists();
       renderAuditTable();
       renderMatrixTable(researchData);
 
-      // Search event listener
-      document.getElementById('search-input').addEventListener('input', applyFilters);
+      document.getElementById('search-input')?.addEventListener('input', applyFilters);
     });
 
-    // Render Opportunity Lists
     function renderOpportunityLists() {
       const p1Container = document.getElementById('p1-list-container');
       const p4Container = document.getElementById('p4-list-container');
@@ -602,10 +693,10 @@
 
       if (p1Container) {
         p1Container.innerHTML = p1s.slice(0, 10).map(item => `
-          <div class="bg-slate-800/60 p-2.5 rounded-lg border border-slate-700/50 flex items-center justify-between text-xs">
+          <div class="bg-white/60 dark:bg-slate-800/60 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700/50 flex items-center justify-between text-xs hover:border-emerald-500/40 transition">
             <div>
-              <span class="font-bold text-white">${item.app}</span>
-              <span class="text-slate-400 text-[11px] block">${item.category} · ${item.auth_type}</span>
+              <span class="font-bold text-slate-900 dark:text-white">${item.app}</span>
+              <span class="text-slate-500 dark:text-slate-400 text-[11px] block">${item.category} · ${item.auth_type}</span>
             </div>
             <span class="badge-p1 px-2 py-0.5 rounded text-[10px] font-mono font-bold">P1 (${item.priority_score})</span>
           </div>
@@ -614,10 +705,10 @@
 
       if (p4Container) {
         p4Container.innerHTML = p4s.map(item => `
-          <div class="bg-slate-800/60 p-2.5 rounded-lg border border-slate-700/50 flex items-center justify-between text-xs">
+          <div class="bg-white/60 dark:bg-slate-800/60 p-2.5 rounded-xl border border-slate-200 dark:border-slate-700/50 flex items-center justify-between text-xs hover:border-rose-500/40 transition">
             <div>
-              <span class="font-bold text-white">${item.app}</span>
-              <span class="text-slate-400 text-[11px] block">${item.category} · ${item.access_type}</span>
+              <span class="font-bold text-slate-900 dark:text-white">${item.app}</span>
+              <span class="text-slate-500 dark:text-slate-400 text-[11px] block">${item.category} · ${item.access_type}</span>
             </div>
             <span class="badge-p4 px-2 py-0.5 rounded text-[10px] font-mono font-bold">P4 Outreach</span>
           </div>
@@ -625,37 +716,35 @@
       }
     }
 
-    // Render Audit Table
     function renderAuditTable() {
       const tbody = document.getElementById('audit-table-body');
       if (!tbody) return;
 
       tbody.innerHTML = auditData.slice(0, 15).map(row => {
-        let badgeClass = 'text-emerald-400 bg-emerald-500/10 border-emerald-500/30';
-        if (row.auditor_result === 'incorrect') badgeClass = 'text-rose-400 bg-rose-500/10 border-rose-500/30';
-        if (row.auditor_result === 'unclear') badgeClass = 'text-amber-400 bg-amber-500/10 border-amber-500/30';
+        let badgeClass = 'text-emerald-600 dark:text-emerald-400 bg-emerald-50 dark:bg-emerald-500/10 border-emerald-300 dark:border-emerald-500/30';
+        if (row.auditor_result === 'incorrect') badgeClass = 'text-rose-600 dark:text-rose-400 bg-rose-50 dark:bg-rose-500/10 border-rose-300 dark:border-rose-500/30';
+        if (row.auditor_result === 'unclear') badgeClass = 'text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-500/10 border-amber-300 dark:border-amber-500/30';
 
         return `
-          <tr class="hover:bg-slate-800/40">
-            <td class="py-2.5 px-4 font-bold text-white">${row.app}</td>
-            <td class="py-2.5 px-3 text-slate-400">${row.category}</td>
-            <td class="py-2.5 px-3 text-indigo-300 font-semibold">${row.field}</td>
-            <td class="py-2.5 px-4 text-slate-300">${row.agent_claim}</td>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
+            <td class="py-2.5 px-4 font-bold text-slate-900 dark:text-white">${row.app}</td>
+            <td class="py-2.5 px-3 text-slate-500 dark:text-slate-400">${row.category}</td>
+            <td class="py-2.5 px-3 text-indigo-600 dark:text-indigo-300 font-semibold">${row.field}</td>
+            <td class="py-2.5 px-4 text-slate-700 dark:text-slate-300">${row.agent_claim}</td>
             <td class="py-2.5 px-3">
               <span class="px-2 py-0.5 rounded border text-[10px] uppercase font-bold ${badgeClass}">
                 ${row.auditor_result}
               </span>
             </td>
-            <td class="py-2.5 px-4 text-slate-400">
-              ${row.correction ? `<span class="text-rose-300 font-semibold">Fix: ${row.correction}</span> - ` : ''}
-              ${row.auditor_notes || 'Verified'}
+            <td class="py-2.5 px-4 text-slate-500 dark:text-slate-400">
+              ${row.correction ? `<span class="text-rose-600 dark:text-rose-300 font-bold">Fix: ${row.correction}</span> - ` : ''}
+              ${row.auditor_notes || 'Verified against docs'}
             </td>
           </tr>
         `;
       }).join('');
     }
 
-    // Render 100-App Table
     function renderMatrixTable(items) {
       const tbody = document.getElementById('matrix-table-body');
       const countBadge = document.getElementById('results-count-badge');
@@ -673,36 +762,36 @@
         if (item.priority_tier === 'P2') pClass = 'badge-p2';
         if (item.priority_tier === 'P4') pClass = 'badge-p4';
 
-        let mcpBadge = '<span class="text-slate-500">None</span>';
-        if (item.mcp_status === 'Official') mcpBadge = '<span class="px-1.5 py-0.5 rounded bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-bold">Official</span>';
-        else if (item.mcp_status.includes('Community')) mcpBadge = '<span class="px-1.5 py-0.5 rounded bg-indigo-500/10 text-indigo-400 border border-indigo-500/20">Community</span>';
+        let mcpBadge = '<span class="text-slate-400">None</span>';
+        if (item.mcp_status === 'Official') mcpBadge = '<span class="px-2 py-0.5 rounded bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/30 font-bold text-[10px]">Official</span>';
+        else if (item.mcp_status && item.mcp_status.includes('Community')) mcpBadge = '<span class="px-2 py-0.5 rounded bg-indigo-500/10 text-indigo-600 dark:text-indigo-400 border border-indigo-500/30 text-[10px]">Community</span>';
 
         const primaryDoc = (item.evidence_urls && item.evidence_urls.length > 0) ? item.evidence_urls[0] : item.website;
 
         return `
-          <tr class="hover:bg-slate-800/40 transition">
-            <td class="py-3 px-4 font-bold text-white">
-              <a href="${item.website}" target="_blank" class="hover:text-indigo-400 underline decoration-slate-700">${item.app}</a>
+          <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/40 transition">
+            <td class="py-3 px-4 font-bold text-slate-900 dark:text-white">
+              <a href="${item.website}" target="_blank" class="hover:text-indigo-600 dark:hover:text-indigo-400 underline decoration-slate-300 dark:decoration-slate-700">${item.app}</a>
             </td>
-            <td class="py-3 px-3 text-slate-400">${item.category}</td>
-            <td class="py-3 px-3 text-indigo-300 font-medium">${item.auth_type}</td>
+            <td class="py-3 px-3 text-slate-500 dark:text-slate-400">${item.category}</td>
+            <td class="py-3 px-3 text-indigo-700 dark:text-indigo-300 font-medium">${item.auth_type}</td>
             <td class="py-3 px-3">
-              <span class="${item.self_serve === 'Yes' ? 'text-emerald-400' : (item.self_serve === 'No' ? 'text-rose-400' : 'text-amber-400')}">
+              <span class="${item.self_serve === 'Yes' ? 'text-emerald-600 dark:text-emerald-400 font-medium' : (item.self_serve === 'No' ? 'text-rose-600 dark:text-rose-400' : 'text-amber-600 dark:text-amber-400')}">
                 ${item.access_type}
               </span>
             </td>
-            <td class="py-3 px-3 text-slate-300">${item.api_surface}</td>
+            <td class="py-3 px-3 text-slate-700 dark:text-slate-300">${item.api_surface}</td>
             <td class="py-3 px-3">${mcpBadge}</td>
             <td class="py-3 px-3 text-center">
-              <span class="px-2 py-0.5 rounded font-mono font-bold text-[10px] ${pClass}">${item.priority_tier}</span>
+              <span class="px-2.5 py-0.5 rounded font-mono font-bold text-[10px] ${pClass}">${item.priority_tier}</span>
             </td>
             <td class="py-3 px-3">
-              <a href="${primaryDoc}" target="_blank" class="text-indigo-400 hover:underline truncate block max-w-[140px] font-mono text-[11px]" title="${primaryDoc}">
+              <a href="${primaryDoc}" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline truncate block max-w-[130px] font-mono text-[11px]" title="${primaryDoc}">
                 Docs Link ↗
               </a>
             </td>
             <td class="py-3 px-3 text-right">
-              <button onclick='openModal(${JSON.stringify(item.app)})' class="px-2.5 py-1 rounded bg-slate-800 hover:bg-indigo-600 text-slate-200 hover:text-white transition font-medium">
+              <button onclick='openModal(${JSON.stringify(item.app)})' class="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-indigo-600 dark:bg-slate-800 hover:text-white text-slate-700 dark:text-slate-200 transition font-semibold text-[11px]">
                 Inspect
               </button>
             </td>
@@ -711,14 +800,13 @@
       }).join('');
     }
 
-    // Filter Logic
     function filterCategory(cat) {
       activeCategory = cat;
       document.querySelectorAll('.cat-filter-btn').forEach(btn => {
         if (btn.getAttribute('data-cat') === cat) {
-          btn.className = 'cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-indigo-600 text-white';
+          btn.className = 'cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-semibold bg-indigo-600 text-white shadow-sm';
         } else {
-          btn.className = 'cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-800 text-slate-300 hover:bg-slate-700';
+          btn.className = 'cat-filter-btn px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-slate-700';
         }
       });
       applyFilters();
@@ -730,17 +818,11 @@
       const access = document.getElementById('access-select')?.value || 'All';
 
       const filtered = researchData.filter(item => {
-        // Category filter
         if (activeCategory !== 'All' && item.category !== activeCategory) return false;
-
-        // Priority filter
         if (priority !== 'All' && item.priority_tier !== priority) return false;
-
-        // Access filter
         if (access === 'Self-serve' && item.self_serve !== 'Yes') return false;
         if (access === 'Gated' && item.self_serve === 'Yes') return false;
 
-        // Search query
         if (query) {
           const matchApp = item.app.toLowerCase().includes(query);
           const matchCat = item.category.toLowerCase().includes(query);
@@ -756,7 +838,6 @@
       renderMatrixTable(filtered);
     }
 
-    // Modal Inspect
     function openModal(appName) {
       const item = researchData.find(d => d.app === appName);
       if (!item) return;
@@ -770,22 +851,21 @@
 
       document.getElementById('modal-desc').textContent = item.description;
       document.getElementById('modal-auth').textContent = `${item.auth_type} — ${item.auth_details || 'Standard access pattern'}`;
-      document.getElementById('modal-access').textContent = `${item.access_type} — ${item.access_restrictions || 'Publicly self-serve'}`;
+      document.getElementById('modal-access').textContent = `${item.access_type} — ${item.access_restrictions || 'Public self-serve'}`;
       document.getElementById('modal-api').textContent = `${item.api_type} (${item.api_surface})`;
       document.getElementById('modal-mcp').textContent = `${item.mcp_status} — ${item.mcp_details || 'N/A'}`;
 
       const blockersUl = document.getElementById('modal-blockers');
-      blockersUl.innerHTML = (item.blockers || []).map(b => `<li>${b}</li>`).join('') || '<li>No significant gating detected.</li>';
+      blockersUl.innerHTML = (item.blockers || []).map(b => `<li>${b}</li>`).join('') || '<li>No critical gating observed.</li>';
 
       const sourcesDiv = document.getElementById('modal-sources');
       sourcesDiv.innerHTML = (item.evidence_urls || []).map(u => `
-        <a href="${u}" target="_blank" class="text-indigo-400 hover:underline block truncate font-mono text-[11px] bg-slate-800/40 p-1.5 rounded">
+        <a href="${u}" target="_blank" class="text-indigo-600 dark:text-indigo-400 hover:underline block truncate font-mono text-[11px] bg-slate-100 dark:bg-slate-800/40 p-2 rounded-lg">
           ${u} ↗
         </a>
-      `).join('') || '<span class="text-slate-500">Official website used as primary root.</span>';
+      `).join('') || '<span class="text-slate-400">Official documentation portal</span>';
 
       document.getElementById('modal-json').textContent = JSON.stringify(item, null, 2);
-
       document.getElementById('inspect-modal').classList.remove('hidden');
     }
 
@@ -793,21 +873,28 @@
       document.getElementById('inspect-modal').classList.add('hidden');
     }
 
-    // Close on backdrop click
     document.getElementById('inspect-modal')?.addEventListener('click', (e) => {
       if (e.target.id === 'inspect-modal') closeModal();
     });
 
-    // Chart.js Rendering
     function renderCharts() {
+      const isDark = document.documentElement.classList.contains('dark');
+      const textColor = isDark ? '#94a3b8' : '#64748b';
+      const gridColor = isDark ? '#1e293b' : '#e2e8f0';
+
       const authDist = (insightsData.distributions && insightsData.distributions.auth_distribution) || {};
       const accessDist = (insightsData.distributions && insightsData.distributions.access_distribution) || {};
       const priorityDist = (insightsData.distributions && insightsData.distributions.priority_distribution) || {};
 
+      // Destroy previous chart instances on theme toggle
+      if (authChartInstance) authChartInstance.destroy();
+      if (accessChartInstance) accessChartInstance.destroy();
+      if (priorityChartInstance) priorityChartInstance.destroy();
+
       // 1. Auth Chart
       const ctxAuth = document.getElementById('authChart')?.getContext('2d');
       if (ctxAuth) {
-        new Chart(ctxAuth, {
+        authChartInstance = new Chart(ctxAuth, {
           type: 'doughnut',
           data: {
             labels: Object.keys(authDist),
@@ -821,7 +908,7 @@
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-              legend: { position: 'right', labels: { color: '#94a3b8', font: { size: 10 } } }
+              legend: { position: 'right', labels: { color: textColor, font: { size: 10 } } }
             }
           }
         });
@@ -830,7 +917,7 @@
       // 2. Access Chart
       const ctxAccess = document.getElementById('accessChart')?.getContext('2d');
       if (ctxAccess) {
-        new Chart(ctxAccess, {
+        accessChartInstance = new Chart(ctxAccess, {
           type: 'pie',
           data: {
             labels: Object.keys(accessDist),
@@ -844,32 +931,31 @@
             responsive: true,
             maintainAspectRatio: false,
             plugins: {
-              legend: { position: 'right', labels: { color: '#94a3b8', font: { size: 10 } } }
+              legend: { position: 'right', labels: { color: textColor, font: { size: 10 } } }
             }
           }
         });
       }
 
-      // 3. Priority Tiers Bar Chart
+      // 3. Priority Bar Chart
       const ctxPriority = document.getElementById('priorityChart')?.getContext('2d');
       if (ctxPriority) {
-        new Chart(ctxPriority, {
+        priorityChartInstance = new Chart(ctxPriority, {
           type: 'bar',
           data: {
             labels: Object.keys(priorityDist),
             datasets: [{
-              label: 'Applications',
               data: Object.values(priorityDist),
               backgroundColor: ['#10b981', '#3b82f6', '#f59e0b', '#ef4444'],
-              borderRadius: 6
+              borderRadius: 8
             }]
           },
           options: {
             responsive: true,
             maintainAspectRatio: false,
             scales: {
-              x: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { display: false } },
-              y: { ticks: { color: '#94a3b8', font: { size: 10 } }, grid: { color: '#1e293b' } }
+              x: { ticks: { color: textColor, font: { size: 10 } }, grid: { display: false } },
+              y: { ticks: { color: textColor, font: { size: 10 } }, grid: { color: gridColor } }
             },
             plugins: {
               legend: { display: false }
